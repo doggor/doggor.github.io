@@ -1,4 +1,4 @@
-baseURL = "http://doggor.github.io/"
+baseURL = "https://doggor.github.io/"
 languageCode = "zh-cmn-Hans"
 title = "碼農生活"
 theme = "m10c"
