@@ -1,0 +1,20 @@
+baseURL = "http://doggor.github.io/"
+languageCode = "zh-cmn-Hans"
+title = "碼農生活"
+theme = "m10c"
+enableRobotsTXT = true
+hasCJKLanguage = true
+enableEmoji = true
+
+[params]
+  author = "Doggor"
+  description = "曾經有一個碼農分享他遇過的事"
+  [[params.social]]
+    name = "github"
+    url = "https://github.com/doggor"
+  [params.style]
+    darkestColor = "#242930"
+    darkColor = "#353b43"
+    lightColor = "#afbac4"
+    lightestColor = "#ffffff"
+    primaryColor = "#00BFFF"

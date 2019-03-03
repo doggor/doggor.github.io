@@ -1,0 +1,13 @@
+{{ define "main" }}
+<main>
+    <h1 class="post-title">{{ .Title }}</h1>
+    <nav>
+    {{ range .Pages }}
+        <h4>
+            {{ partial "icon.html" }}
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+        </h4>
+    {{ end }}
+    </nav>
+</main>
+{{ end }}

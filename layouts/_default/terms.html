@@ -1,0 +1,16 @@
+{{ define "main"}}
+<main>
+    <h1 class="post-title">{{ .Title }}</h1>
+    <nav>
+        {{ $data := .Data }}
+        {{ range .Data.Terms.Alphabetical }}
+        {{ $termLink := printf "/%s/%s/" $data.Plural .Term | urlize }}
+        <h4>
+            {{ partial "icon.html" "tag" }}
+            <a href="{{ $termLink }}">{{ .Term }}</a>
+            <span>{{ (len .Pages) }}</span>
+        </h4>
+        {{ end }}
+    </nav>
+</main>
+{{ end }}
