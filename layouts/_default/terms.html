@@ -5,11 +5,10 @@
         {{ $data := .Data }}
         {{ range .Data.Terms.Alphabetical }}
         {{ $termLink := printf "/%s/%s/" $data.Plural .Term | urlize }}
-        <h4>
-            {{ partial "icon.html" "tag" }}
-            <a href="{{ $termLink }}">{{ .Term }}</a>
-            <span>{{ (len .Pages) }}</span>
-        </h4>
+            <a class="tag-btn" href="{{ $termLink }}">
+                {{ partial "icon.html" (dict "ctx" $ "name" "tag") }}
+                <span>{{ .Term }}</span>
+            </a>
         {{ end }}
     </nav>
 </main>
