@@ -1,0 +1,29 @@
+{{ define "main"}}
+<main>
+    <h1 class="post-title">{{ .Title }}</h1>
+    <nav>
+        {{ $data := .Data }}
+        {{ range .Data.Terms.Alphabetical }}
+        {{ $termLink := printf "/%s/%s/" $data.Plural .Term | urlize }}
+        <h2>
+            <a href="{{ $termLink }}">
+                {{ partial "icon.html" (dict "ctx" $ "name" "paperclip") }}
+                <span>{{ .Term }}</span>
+            </a>
+        </h2>
+        <ul>
+                {{ range $index, $element := .Pages }}
+                <li>
+                    <a class="posts-list-item-title" href="{{ .Permalink }}">{{ .Title }}</a>
+                    <span class="posts-list-item-description">
+                    {{ partial "icon.html" (dict "ctx" $ "name" "clock") }} {{ .ReadingTime }} min read -
+                    {{ .PublishDate.Format "Jan 2, 2006" }}
+                    </span>
+                    <br/>
+                </li>
+                {{ end }}
+            </ul>
+        {{ end }}
+    </nav>
+</main>
+{{ end }}

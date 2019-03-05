@@ -8,7 +8,7 @@ enableEmoji = true
 
 [params]
   author = "Doggor"
-  description = "曾經有一個碼農分享他遇過的事"
+  description = "曾經有一個碼農分享了他遇過的事"
   [[params.social]]
     name = "github"
     url = "https://github.com/doggor"
