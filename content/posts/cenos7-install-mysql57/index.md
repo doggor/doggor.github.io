@@ -1,12 +1,14 @@
 ---
 title: "CentOS 7安裝MySQL 5.7"
-date: 2019-03-03T10:38:14+08:00
-draft: true
+date: 2019-03-04T10:38:14+08:00
+draft: false
 categories: ["tech"]
 tags: ["centos","mysql"]
 ---
 
 由於現在整個官網都是MySQL 8.x，這裡記一下安裝MySQL 5.7的方法。
+
+<!--more-->
 
 先把官網repo設定到yum
 ```sh
