@@ -73,6 +73,16 @@ blockquote > * {
   }
 }
 
+.app-header-tag-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .tag-btn {
+        font-size: .8em;
+        padding: 2px 4px;
+    }
+}
+
 .icon {
   display: block-inline;
   width: 1em;
