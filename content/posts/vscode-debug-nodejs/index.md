@@ -28,7 +28,7 @@ ssh -L 9229:localhost:9229 <username>@<remote host>
 > 按Ctrl+C可以中斷SSH session。
 
 然後在你的project中創建/.vscode/launch.json，填入以下設定
-```json
+{{< highlight json "linenos=table" >}}
     {
         "type": "node",
         "request": "attach",
@@ -39,7 +39,7 @@ ssh -L 9229:localhost:9229 <username>@<remote host>
         "localRoot": "${workspaceFolder}",
         "remoteRoot": "<your remote project path>"
     }
-```
+{{< / highlight >}}
 
 準備就緒，開始偵錯。
 
