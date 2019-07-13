@@ -13,8 +13,8 @@ enableEmoji = true
     name = "github"
     url = "https://github.com/doggor"
   [params.style]
-    darkestColor = "#242930"
-    darkColor = "#353b43"
+    darkestColor = "#16191d"
+    darkColor = "#242930"
     lightColor = "#afbac4"
     lightestColor = "#ffffff"
     primaryColor = "#00BFFF"

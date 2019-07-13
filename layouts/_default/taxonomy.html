@@ -1,6 +1,6 @@
 {{ define "main" }}
 <article>
-    <h1>{{ .Title }}</h1>
+    <h1>{{ partial "icon.html" (dict "ctx" $ "name" "tag") }} {{ .Title }}</h1>
     <ul class="posts-list">
         {{ range $index, $element := $.Paginator.Pages }}
         <li class="posts-list-item">

@@ -26,10 +26,10 @@ h1, h2, h3, h4, h5, h6 {
 a {
   color: $primary-color;
   text-decoration: none;
+  transition: color 0.4s;
 
   &:hover {
     color: $lightest-color;
-    transition: color 0.8s;
   }
 }
 
@@ -51,20 +51,20 @@ blockquote > * {
   padding: 2.5em;
   background: $darkest-color;
   text-align: center;
+  overflow: auto;
 }
 
 .app-header-avatar {
   max-width: 15rem;
   max-height: 15rem;
-  border-radius: 100%;
-  border: 0.5rem solid $primary-color;
+  border-radius: 50%;
 }
 
 .app-container {
   padding: 2.5rem;
 }
 
-.app-header-social {
+.app-header-links {
   font-size: 2em;
   color: $lightest-color;
 
@@ -111,7 +111,7 @@ blockquote > * {
 
 .post-content {
   pre {
-    border-left: 0.4em solid rgba($primary-color, .8);
+    border-left: .2em solid darken($primary-color, 16%);
     padding-left: 1em;
     padding: .5em;
     background-color: #000;
@@ -138,10 +138,11 @@ blockquote > * {
 }
 
 .tag-btn {
+  display: inline-block;
   margin: 4px;
   padding: 5px 8px;
-  border: 1px solid currentColor;
   border-radius: 5px;
+  background-color: rgba(255, 255, 255, .1);
 }
 
 @media (min-width: 940px) {
@@ -149,12 +150,38 @@ blockquote > * {
     position: fixed;
     top: 0;
     left: 0;
+    bottom: 0;
     width: 20rem;
     min-height: 100vh;
   }
 
   .app-container {
-    max-width: 65rem;
     margin-left: 20rem;
   }
+}
+
+@media (max-width: 931px) {
+    .app-header {
+      padding: .8rem;
+    }
+    .app-header > p, .app-header-avatar, .app-header-tag-group {
+        display: none;
+    }
+    .app-header h1 {
+      margin: 0;
+      float: left;
+    }
+    .app-header-links {
+        float: right;
+    }
+    .app-container {
+      padding: .8rem;
+    }
+}
+
+.category-list {
+    list-style-type: none;
+    li > svg {
+        margin-left: -22px;
+    }
 }

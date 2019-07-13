@@ -7,13 +7,14 @@
         {{ $termLink := printf "/%s/%s/" $data.Plural .Term | urlize }}
         <h2>
             <a href="{{ $termLink }}">
-                {{ partial "icon.html" (dict "ctx" $ "name" "paperclip") }}
+                {{ partial "icon.html" (dict "ctx" $ "name" "folder") }}
                 <span>{{ .Term }}</span>
             </a>
         </h2>
-        <ul>
+        <ul class="category-list">
                 {{ range $index, $element := .Pages }}
                 <li>
+                    {{ partial "icon.html" (dict "ctx" $ "name" "paperclip") }}
                     <a class="posts-list-item-title" href="{{ .Permalink }}">{{ .Title }}</a>
                     <span class="posts-list-item-description">
                     {{ partial "icon.html" (dict "ctx" $ "name" "clock") }} {{ .ReadingTime }} min read -
