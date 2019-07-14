@@ -6,9 +6,16 @@
     <meta charset="utf-8" />
     <meta name="generator" content="Hugo {{ .Hugo.Version }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="author" content="{{ .Site.Params.author | default "John Doe" }}" />
+    <meta name="author" content="{{ .Site.Params.author }}" />
     <meta name="description"
-        content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}" />
+        content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else if .Summary }}{{ .Summary }}{{ else }}{{ .Description }}{{ end }}" />
+    {{ $thumbnail := .Resources.GetMatch "thumbnail.*" }}
+    {{ if $thumbnail }}
+    <meta property="og:image" content="{{ .Site.BaseURL }}{{ $thumbnail.RelPermalink }}">
+    {{ end }}
+    {{ range .Params.tags }}
+    <meta property="og:tags" content="{{ . }}">
+    {{ end }}
     <base href="{{ .Site.BaseURL }}" />
     {{ $style := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | resources.ToCSS | resources.Minify | resources.Fingerprint -}}
     <link rel="stylesheet" href="{{ $style.Permalink }}" />
