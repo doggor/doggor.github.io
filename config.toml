@@ -5,6 +5,7 @@ theme = "m10c"
 enableRobotsTXT = true
 hasCJKLanguage = true
 enableEmoji = true
+disqusShortname = "doggor-coding-notebook"
 
 [params]
   author = "Doggor"
