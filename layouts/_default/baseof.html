@@ -7,8 +7,7 @@
     <meta name="generator" content="Hugo {{ .Hugo.Version }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="{{ .Site.Params.author }}" />
-    <meta name="description"
-        content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else if .Summary }}{{ .Summary }}{{ else }}{{ .Description }}{{ end }}" />
+    <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else if .Summary }}{{ .Summary }}{{ else }}{{ .Description }}{{ end }}" />
     {{ $thumbnail := .Resources.GetMatch "thumbnail.*" }}
     {{ if $thumbnail }}
     <meta property="og:image" content="{{ .Site.BaseURL }}{{ $thumbnail.RelPermalink }}">
@@ -17,13 +16,18 @@
     <meta property="og:tags" content="{{ . }}">
     {{ end }}
     <base href="{{ .Site.BaseURL }}" />
-    {{ $style := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | resources.ToCSS | resources.Minify | resources.Fingerprint -}}
+    {{ $style := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | toCSS | minify | fingerprint -}}
     <link rel="stylesheet" href="{{ $style.Permalink }}" />
 </head>
 
 <body>
     <header class="app-header">
-        <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+        <a href="/">
+            {{ $avatar := resources.Get "img/avatar.jpg" }}
+            {{ $avatar1x := $avatar.Fill "240x240" }}
+            {{ $avatar2x := $avatar.Fill "460x460" }}
+            <img class="app-header-avatar" src="{{ $avatar1x.RelPermalink }}" srcset="{{ $avatar1x.RelPermalink }}, {{ $avatar2x.RelPermalink }} 2x" width="240" height="240">
+        </a>
         <a href="/"><h1>{{ .Site.Title }}</h1></a>
         <p>{{ .Site.Params.description }}</p>
 
