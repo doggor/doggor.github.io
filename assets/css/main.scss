@@ -129,11 +129,29 @@ blockquote > * {
 .posts-list-item {
   list-style: none;
   border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
-  padding: 0.4em 0;
+  padding: 1rem 0;
+  min-height: calc(140px + 2rem);
+}
+
+.posts-list-item-image {
+    position: absolute;
+    width: 200px;
+    height: 140px;
+}
+
+.posts-list-item-text {
+    display: inline-block;
+    margin-left: 210px;
 }
 
 .posts-list-item-description {
-  display: block;
+  color: $light-color;
+  p {
+      margin-bottom: 0;
+  }
+}
+
+.posts-list-item-meta {
   font-size: 0.8em;
 }
 
@@ -176,6 +194,12 @@ blockquote > * {
     }
     .app-container {
       padding: .8rem;
+    }
+    .posts-list-item-image {
+        display: none;
+    }
+    .posts-list-item-text {
+        margin-left: 0;
     }
 }
 
