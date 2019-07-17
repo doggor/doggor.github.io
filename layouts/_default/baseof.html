@@ -9,6 +9,11 @@
     <meta name="author" content="{{ .Site.Params.author }}" />
     <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else if .Summary }}{{ .Summary }}{{ else }}{{ .Description }}{{ end }}" />
     <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="{{ .Site.Title }}">
+    <link rel="apple-touch-icon" href="/images/icons/icon-152x152.png">
+    <meta name="theme-color" content="#16191d" />
     {{ $thumbnail := .Resources.GetMatch "thumbnail.*" }}
     {{ if $thumbnail }}
     <meta property="og:image" content="{{ .Site.BaseURL }}{{ $thumbnail.RelPermalink }}">
