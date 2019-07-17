@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="{{ .Site.Params.author }}" />
     <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else if .Summary }}{{ .Summary }}{{ else }}{{ .Description }}{{ end }}" />
+    <link rel="manifest" href="/manifest.json">
     {{ $thumbnail := .Resources.GetMatch "thumbnail.*" }}
     {{ if $thumbnail }}
     <meta property="og:image" content="{{ .Site.BaseURL }}{{ $thumbnail.RelPermalink }}">
@@ -20,6 +21,10 @@
     <link rel="stylesheet" href="{{ $style.Permalink }}" />
     {{ $cookies := resources.Get "js/cookies-consent.js" | minify | fingerprint "md5" }}
     <script src="{{ $cookies.Permalink }}" defer></script>
+    {{ $serviceworker := resources.Get "service-worker.js" | minify }}
+    <!-- worker to load: {{ $serviceworker.Permalink }} -->
+    {{ $serviceworkerloader := resources.Get "js/service-worker-loader.js" | minify }}
+    <script src="{{ $serviceworkerloader.Permalink }}" defer></script>
 </head>
 
 <body>
