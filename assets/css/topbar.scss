@@ -1,0 +1,72 @@
+@import "./variables";
+@import "./colors";
+
+$padding: 12px;
+$lineWidth: $topbarHeight - (2 * $padding);
+$lineHeight: $lineWidth / 7;
+
+.app-topbar {
+    display: none;
+    transition: transform ease 0.6s;
+
+    .app-topbar-menu-btn {
+        display: block;
+        float: left;
+        position: relative;
+        width: $topbarHeight;
+        height: $topbarHeight;
+        padding: $padding;
+
+        span {
+            display: block;
+            position: absolute;
+            width: $lineWidth;
+            height: $lineHeight;
+            background-color: $lightest-color;
+            border-radius: $lineHeight / 2;
+            transition: transform ease 0.6s;
+
+            &:first-child {
+                transform-origin: right;
+                transform: translateY($lineHeight * 1);
+            }
+            &:nth-child(2) {
+                transform: translateY($lineHeight * 3);
+            }
+            &:last-child {
+                transform-origin: right;
+                transform: translateY($lineHeight * 5);
+            }
+        }
+    }
+
+    h2 {
+        display: block;
+        margin: 0;
+        float: left;
+        line-height: $topbarHeight;
+        transition: opacity ease 0.6s;
+    }
+}
+
+.app-header.show ~ .app-topbar {
+    transform: translateX($sidebarWidth);
+
+    & .app-topbar-menu-btn {
+        span {
+            &:first-child {
+                transform: rotate(-45deg);
+            }
+            &:nth-child(2) {
+                transform: translateY($lineHeight * 3) scaleX(0);
+            }
+            &:last-child {
+                transform: translateY($lineHeight * 5) rotate(45deg);
+            }
+        }
+    }
+
+    & h2 {
+        opacity: 0;
+    }
+}

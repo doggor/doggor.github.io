@@ -22,10 +22,14 @@
     <meta property="og:tags" content="{{ . }}">
     {{ end }}
     <base href="{{ .Site.BaseURL }}" />
-    {{ $style := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | toCSS | minify | fingerprint "md5" -}}
-    <link rel="stylesheet" href="{{ $style.Permalink }}" />
+    {{ $mainStyle := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | toCSS | minify | fingerprint "md5" -}}
+    <link rel="stylesheet" href="{{ $mainStyle.Permalink }}" />
+    {{ $mobileStyle := resources.Get "css/mobile.scss" | resources.ExecuteAsTemplate "css/mobile.scss" . | toCSS | minify | fingerprint "md5" -}}
+    <link rel="stylesheet" media="screen and (max-width: 939px)" href="{{ $mobileStyle.Permalink }}" />
     {{ $cookies := resources.Get "js/cookies-consent.js" | minify | fingerprint "md5" }}
     <script src="{{ $cookies.Permalink }}" defer></script>
+    {{ $topbarActions := resources.Get "js/topbar-actions.js" | minify | fingerprint "md5" }}
+    <script src="{{ $topbarActions.Permalink }}" defer></script>
     {{ $serviceworker := resources.Get "service-worker.js" | minify }}
     <!-- worker to load: {{ $serviceworker.Permalink }} -->
     {{ $serviceworkerloader := resources.Get "js/service-worker-loader.js" | minify }}
@@ -62,6 +66,18 @@
             {{ end }}
         </div>
     </header>
+
+    <div class="app-topbar">
+        <div class="app-topbar-menu-btn" aria-label="menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <a href="/" aria-label="Home">
+            <h2>{{ .Site.Title }}</h2>
+        </a>
+    </div>
+
     <main class="app-container">
         {{ block "main" . }}
         {{ .Content }}

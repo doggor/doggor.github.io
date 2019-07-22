@@ -1,0 +1,46 @@
+@import "./variables";
+@import "./colors";
+
+.app-header {
+    padding: 2.5em 0.8rem;
+    transform: translateX(-$sidebarWidth);
+    &.show {
+        transform: none;
+    }
+}
+
+.app-header.show + .app-container {
+    transform: translateX($sidebarWidth);
+}
+
+.app-topbar {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: $topbarHeight;
+    background-color: $darkest-color;
+    z-index: 99;
+}
+
+.app-container {
+    margin-left: 0;
+    padding: $topbarHeight 0.8rem;
+}
+
+.posts-list-item-image {
+    display: none;
+}
+
+.posts-list-item-text {
+    margin-left: 0;
+}
+
+.post-header {
+    margin-top: 20px;
+}
+
+.post-title {
+    clear: both;
+}

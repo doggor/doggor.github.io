@@ -1,8 +1,10 @@
 {{ define "main" }}
   <article class="post">
     <header class="post-header">
-      {{ partial "share-buttons.html" . }}
-      <h1 class ="post-title">{{ .Title }}</h1>
+      <div>
+        <h1 class ="post-title">{{ .Title }}</h1>
+        {{ partial "share-buttons.html" . }}
+      </div>
       <div class="post-meta">
         <div>
           {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }}

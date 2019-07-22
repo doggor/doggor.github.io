@@ -1,0 +1,34 @@
+@import "./colors";
+
+.posts-list {
+    padding: 0;
+}
+
+.posts-list-item {
+    list-style: none;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+    padding: 1rem 0;
+    min-height: calc(140px + 2rem);
+}
+
+.posts-list-item-image {
+    position: absolute;
+    width: 200px;
+    height: 140px;
+}
+
+.posts-list-item-text {
+    display: inline-block;
+    margin-left: 210px;
+}
+
+.posts-list-item-description {
+    color: $light-color;
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.posts-list-item-meta {
+    font-size: 0.8em;
+}

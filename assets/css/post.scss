@@ -1,0 +1,107 @@
+@import "./colors";
+
+.post-title {
+    display: inline;
+    color: $lightest-color;
+}
+
+.post-content pre {
+    border-left: 0.2em solid darken($primary-color, 16%);
+    padding-left: 1em;
+    padding: 0.5em;
+    background-color: #000;
+}
+
+.post-meta {
+    margin-top: 1.5rem;
+    clear: both;
+    font-size: 0.8em;
+}
+
+.disqus-area {
+    margin-top: 8rem;
+}
+.tag {
+    display: inline-block;
+    margin-right: 0.2em;
+    padding: 0 0.6em;
+    font-size: 0.9em;
+    border-radius: 0.2em;
+    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.1);
+    transition: background 0.8s;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+}
+
+#share-buttons {
+    display: block;
+    float: right;
+    margin: 0 8px;
+
+    & > div {
+        position: relative;
+        text-align: left;
+        height: 36px;
+        width: 32px;
+        float: left;
+        text-align: center;
+    }
+    & > div > svg {
+        height: 16px;
+        fill: #d5d5d5;
+        margin-top: 10px;
+    }
+    & > div:hover {
+        cursor: pointer;
+    }
+    & > div.facebook:hover > svg {
+        fill: #3b5998;
+    }
+    & > div.twitter:hover > svg {
+        fill: #55acee;
+    }
+    & > div.linkedin:hover > svg {
+        fill: #0077b5;
+    }
+    & > div.pinterest:hover > svg {
+        fill: #cb2027;
+    }
+    & > div.gplus:hover > svg {
+        fill: #dd4b39;
+    }
+    & > div.mail:hover > svg {
+        fill: #7d7d7d;
+    }
+    & > div.instagram:hover > svg {
+        fill: #c73b92;
+    }
+    & > div.facebook > svg {
+        height: 18px;
+        margin-top: 9px;
+    }
+    & > div.twitter > svg {
+        height: 20px;
+        margin-top: 8px;
+    }
+    & > div.linkedin > svg {
+        height: 19px;
+        margin-top: 7px;
+    }
+    & > div.pinterest > svg {
+        height: 20px;
+        margin-top: 9px;
+    }
+    & > div.gplus > svg {
+        height: 17px;
+        margin-top: 9px;
+        position: relative;
+        left: 1px;
+    }
+    & > div.mail > svg {
+        height: 14px;
+        margin-top: 11px;
+    }
+}

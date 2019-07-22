@@ -1,0 +1,41 @@
+@import "./variables";
+@import "./colors";
+
+.app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: $sidebarWidth;
+    min-height: 100vh;
+    padding: 2.5em;
+    background: $darkest-color;
+    text-align: center;
+    overflow: auto;
+    transition: transform ease .6s;
+}
+
+.app-header-avatar {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+}
+
+.app-header-links {
+    font-size: 2em;
+    color: $lightest-color;
+
+    a {
+        margin: 0 0.1em;
+    }
+}
+
+.app-header-tag-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .tag-btn {
+        font-size: 0.8em;
+        padding: 2px 4px;
+    }
+}
