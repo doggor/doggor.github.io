@@ -1,12 +1,10 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 if (workbox) {
-    workbox.precaching.precacheAndRoute([
-        "/"
-    ], {
-        // Ignore all URL parameters.
-        ignoreURLParametersMatching: [/.*/]
-    });
+    workbox.routing.registerRoute(
+        /\/$/,
+        new workbox.strategies.NetworkFirst()
+    );
 
     workbox.routing.registerRoute(
         /\.js$/,
