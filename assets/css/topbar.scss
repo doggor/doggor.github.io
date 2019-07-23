@@ -9,6 +9,10 @@ $lineHeight: $lineWidth / 7;
     display: none;
     transition: transform ease 0.6s;
 
+    &.hide {
+        transform: translateY(-$topbarHeight);
+    }
+
     .app-topbar-menu-btn {
         display: block;
         float: left;
