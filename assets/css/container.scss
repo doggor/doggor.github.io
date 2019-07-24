@@ -1,5 +1,23 @@
+@import "./colors";
+
 .app-container {
+    display: block;
     padding: 2.5rem;
     margin-left: 20rem;
     transition: transform ease 0.6s;
+}
+
+.app-header.show ~ .app-container::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    animation: show-main-cover .6s ease forwards;
+}
+
+@keyframes show-main-cover {
+    from { background-color: transparent; }
+	to   { background-color: transparentize($darkest-color, .2); }
 }

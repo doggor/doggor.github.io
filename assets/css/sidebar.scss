@@ -13,6 +13,7 @@
     text-align: center;
     overflow: auto;
     transition: transform ease .6s;
+    z-index: 99;
 }
 
 .app-header-avatar {
