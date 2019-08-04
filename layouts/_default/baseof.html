@@ -34,6 +34,9 @@
     <!-- worker to load: {{ $serviceworker.Permalink }} -->
     {{ $serviceworkerloader := resources.Get "js/service-worker-loader.js" | minify }}
     <script src="{{ $serviceworkerloader.Permalink }}" defer></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    {{ $gtag := resources.Get "js/gtag.js" | minify }}
+    <script src="{{ $gtag.Permalink }}" defer></script>
 </head>
 
 <body>
