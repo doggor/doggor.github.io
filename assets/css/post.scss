@@ -105,3 +105,16 @@
         margin-top: 11px;
     }
 }
+
+figure {
+    img {
+        max-width: 100%;
+    }
+    figcaption {
+        text-align: center;
+        font-style: italic;
+        p {
+            margin: 0.5em 0 1em;
+        }
+    }
+}
