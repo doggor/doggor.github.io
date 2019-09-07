@@ -3,18 +3,18 @@ title: "[試一下tensorflow.js] 先用canvas畫驗證碼"
 date: 2019-08-31T10:42:02+08:00
 draft: false
 categories: ["tech"]
-tags: ["canvas", "tfjs"]
+tags: ["js", "canvas", "tfjs"]
 ---
 
 2019香港居屋抽籤完滿結束，人生依舊殘念。沒事幹的唯有回望一下今年網上居屋申請表格，看看用canvas重新實現表格上的驗證碼，然後試著用tensorflow.js去辨識字母。
 
 <!--more-->
 
-*這篇重點是重現驗證碼圙寨，如果你是想了解利用tensorflow.js辨識字母，請留意下一篇文章。*
+*這篇重點是重現驗證碼圙寨，如果你是想了解使用tensorflow.js辨識字母，可以把你傳送到[下一篇文章](/posts/play-with-tfjs-classify-validation-code)*
 
 因為活動已完結所以網頁也關了，下面附上截圖先譲各位了解一下：
 
-{{<figure src="/posts/play-with-tfjs-validation-code/website-screenshot.png" link="/posts/play-with-tfjs-validation-code/website-screenshot.png" caption="2019居屋網上申請表格截圖">}}
+{{<figure src="/posts/play-with-tfjs-validation-code/website-screenshot.png" link="/posts/play-with-tfjs-validation-code/website-screenshot.png" target="_blank" caption="2019居屋網上申請表格截圖">}}
 
 *這裡純學術研究，內容上如有任何冒犯請見諒。*
 
@@ -101,7 +101,7 @@ for (let char of "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 {{< / highlight >}}
 
 程式碼就先寫到這裡，下面直接看看效果：
-<p class="codepen" data-height="265" data-theme-id="0" data-default-tab="js,result" data-user="doggor" data-slug-hash="YzKxYVg" data-preview="true" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="hk-housing-authority-validation-code-patterns">
+<p class="codepen" data-height="512" data-theme-id="0" data-default-tab="js,result" data-user="doggor" data-slug-hash="YzKxYVg" data-preview="true" style="height: 512px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="hk-housing-authority-validation-code-patterns">
   <span>See the Pen <a href="https://codepen.io/doggor/pen/YzKxYVg/">
   hk-housing-authority-validation-code-patterns</a> by Andy Ching (<a href="https://codepen.io/doggor">@doggor</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
