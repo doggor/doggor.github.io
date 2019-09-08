@@ -34,7 +34,38 @@ tags: ["js", "react", "tfjs"]
 
 預設會給予一個隨機名字，你可以直接使用它，或者改一個容易記憶、有意義的名字。要注意一點，如果已經存在同名的模型，它將會被覆蓋。
 
-確認名字後，會看到這個新模型在操作欄下方：
+這裡你可以定義自己的模型，格式為`JSON`，模型會轉化成為`tf.sequential`，即該JSON object必需是一個Array。預設如下：
+
+```json
+[
+    { "conv2d": { "name": "conv1", "kernelSize": [5, 5], "strides": 1, "filters": 24, "useBias": true, "activation": "relu" } },
+    { "maxPooling2d": { "poolSize": [2, 2] } },
+    { "conv2d": { "name": "conv2", "kernelSize": [3, 3], "strides": 1, "filters": 24, "useBias": true, "activation": "relu" } },
+    { "maxPooling2d": { "poolSize": [2, 2] } },
+    { "flatten": {} },
+    { "dense": { "name": "dense1", "useBias": true, "activation": "relu" } }
+]
+```
+
+程式會為第一層自動補上input shape和batch size，也為最後一層補上units確保輸出維度是[, 62]。Array中每個Object表示一層Layer，以`{layer_type: properties}`型式定義。`layer_type`可用名字能在`tf.layers.*`中找到，`properties`為該`layer_type`可用的設定，跟直接使用js編寫很相似。
+
+起初你可以基於上面預設值作少許修改，例如這樣：
+
+```json
+[
+    { "conv2d": { "name": "conv1", "kernelSize": [5, 5], "strides": 1, "filters": 24, "useBias": true, "activation": "relu" } },
+    { "maxPooling2d": { "poolSize": [2, 2] } },
+    { "conv2d": { "name": "conv2", "kernelSize": [3, 3], "strides": 1, "filters": 24, "useBias": true, "activation": "relu" } },
+    { "maxPooling2d": { "poolSize": [2, 2] } },
+    { "flatten": { "name": "flatten1" } },
+    { "dense": { "name": "dense1", "units": 128, "useBias": true, "activation": "relu" } },
+    { "dense": { "name": "dense2", "useBias": true, "activation": "softmax" } }
+]
+```
+
+如果你是笫一次使用，建議先直接使用預設值。
+
+確定後，會看到這個新模型在操作欄下方：
 
 {{<figure src="/posts/play-with-tfjs-classify-validation-code/03.png" link="/posts/play-with-tfjs-classify-validation-code/03.png" target="_blank">}}
 

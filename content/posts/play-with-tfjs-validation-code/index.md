@@ -10,23 +10,23 @@ tags: ["js", "canvas", "tfjs"]
 
 <!--more-->
 
-*這篇重點是重現驗證碼圙寨，如果你是想了解使用tensorflow.js辨識字母，可以把你傳送到[下一篇文章](/posts/play-with-tfjs-classify-validation-code)*
+*這篇重點是重現驗證碼圙案，如果你是想了解如何使用tensorflow.js辨識字母，請到[下一篇文章](/posts/play-with-tfjs-classify-validation-code)*
+
+> *這裡純學術研究，內容上如有任何冒犯請見諒。*
 
 因為活動已完結所以網頁也關了，下面附上截圖先譲各位了解一下：
 
 {{<figure src="/posts/play-with-tfjs-validation-code/website-screenshot.png" link="/posts/play-with-tfjs-validation-code/website-screenshot.png" target="_blank" caption="2019居屋網上申請表格截圖">}}
 
-*這裡純學術研究，內容上如有任何冒犯請見諒。*
-
 可以看出圖案由3部分組成：
 
-- 淺灰色向來右漸變成白色的背景；
+- 由左邊淺灰色往右漸變成白色的背景；
 - 8條黑色線: 4條由上到下，另外4條由左到右，角度隨機場；
 - 黑色數字或英文字母，字體大小各異，多款字型，可以是粗體，大約左右置中有少許隨機位移，坐落於一條baseline之上。
 
 下面寫一個function來繪製類似圖䅁，為了之後辨識字母簡單點，只畫單一字母那款（ML我不懂哦就別挑高難度的 :see_no_evil:）
 
-1. 先定義圖案寛高度各位50px：
+1. 先定義圖案寛高度各50px：
 {{< highlight js "linenos=table,linenostart=1" >}}
 const CANVAS_WIDTH = 50;
 const CANVAS_HEIGHT = 50;
@@ -48,7 +48,7 @@ function generateCharImage(char) {
     const ctx = canvas.getContext("2d");
 {{< / highlight >}}
 
-4. 繪製背景（漸變方向原來應該是左至右，這裡由左上角至右下角）：
+4. 繪製背景（漸變方向原來應該是左至右，這裡加點小改變由左上角至右下角）：
 {{< highlight js "linenos=table,linenostart=11" >}}
     //draw background
     const gradient = ctx.createLinearGradient(0, 0, CANVAS_HEIGHT, CANVAS_HEIGHT);
