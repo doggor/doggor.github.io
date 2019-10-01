@@ -1,5 +1,5 @@
 ---
-title: "利用binlog記載的query修復MySQL"
+title: "利用binlog修復MySQL"
 date: 2019-10-01T18:06:19+08:00
 draft: false
 categories: ["tech"]
@@ -88,7 +88,7 @@ mysqlbinlog -v mysql-bin.001* | awk '/table_1/,/;/' > mysql-0089.buy.sql
 mysql -u root -p < mysql-0011.buy.sql
 ```
 
-### 預防措施
+### 防呆措施
 
 若遇上類似情況，人手操作是不可避免的。故此須要從習慣改變︰
 
@@ -96,4 +96,4 @@ mysql -u root -p < mysql-0011.buy.sql
 2. 以[`trash-cli`](https://github.com/andreafrancia/trash-cli)取代`rm`
 3. 當數據庫主機容量不足時(或預計使用`trash-cli`所需的空間不足時)，先增加其儲存容量
 4. 重建數據庫前除了考慮數據本身佔用之容量，同時亦需要考慮其建構indexes時臨時佔用之容量﹙一般不大於數據本身﹚
-5. 執行需時較長的query時，可考慮使用[mosh](https://mosh.org/)、[tmux](https://github.com/tmux/tmux)以保持當前SSH session，避免因網絡問題或宕機等意外而失敗
+5. 執行需時較長的query時，可考慮使用[mosh](https://mosh.org/)、[tmux](https://github.com/tmux/tmux)以保持當前SSH session，避免因網絡問題或宕機等意外而導致執行失敗
