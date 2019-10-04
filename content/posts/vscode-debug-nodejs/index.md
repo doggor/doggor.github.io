@@ -16,18 +16,17 @@ tags: ["vscode","nodejs","debug"]
 
 inspect模式下，預設會開放port 9229作偵錯通道，此時利用VS Code監聴這個port口就可以隨意設下breakpoint。
 
-現在我們需要先利用SSH把遠端主機的port 9229挷定到本機。在本機終端執行
+某些情況下，例如基於安全考慮，我們無法隨意打開遠端主機的各種port。此時我們需要先利用SSH把遠端主機的port 9229映射到本機，然後讓debugger監聽本機的port 9229：
+
 ```sh
 ssh -L 9229:localhost:9229 <username>@<remote host>
 ```
 
-這時SSH session會監聴遠端port 9229，並把收到的資料從本機的port 9229發出。(本機port 9229收到的資料也會送到遠端。)
+我們需要保持這個SSH session，直至完成整個偵錯工作。
 
-我們先保留這個連接。
+> 按Ctrl+C可以中斷連接。
 
-> 按Ctrl+C可以中斷SSH session。
-
-然後在你的project中創建/.vscode/launch.json，填入以下設定
+在你的project中創建/.vscode/launch.json，填入以下設定
 {{< highlight json "linenos=table" >}}
     {
         "type": "node",
@@ -37,15 +36,19 @@ ssh -L 9229:localhost:9229 <username>@<remote host>
         "address": "localhost",
         "port": 9229,
         "localRoot": "${workspaceFolder}",
-        "remoteRoot": "<your remote project path>"
+        "remoteRoot": "<your remote project absolute path>"
     }
 {{< / highlight >}}
+
+這𥚃`address`是指向`localhost`的，但如果你能夠直接連上遠端port 9229，也可以直接填入遠端主機IP。
 
 準備就緒，開始偵錯。
 
 在VS Code按下F5啟動偵錯模式。
 
-SSH登入到遠端主機，執行你的NodeJS程序
+SSH登入到遠端主機，執行你的NodeJS程序：
 ```sh
 node --inspect <your project path>/<your js file name>.js
 ```
+
+之後，VS Code的DEBUG CONSOLE會同歩顯示該程序的輸出，而你也可以隨意使用break point進行偵錯。
