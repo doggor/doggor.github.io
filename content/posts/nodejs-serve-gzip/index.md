@@ -6,11 +6,9 @@ categories: ["tech"]
 tags: ["nodejs", "gzip", "html"]
 ---
 
-設置Nginx/Apache server時必不少得啟用其內建的gzip功能。然而我在想，為甚麼每次請求非得要我提供純文字內容，然後才在HTTP server進行live gzip？如果手上早已有一堆已壓縮處理過的HTML檔案(*.html.gz)，難度要我先解壓給您跟著再壓縮一次嗎？
+設置Nginx/Apache server時必不少得啟用其內建的動態gzip功能。然而，如果需要跟據請求內容返回不同的靜態檔案，而檔案已預早gzip好的，NodeJS要怎樣做才對呢？
 
 <!--more-->
-
-在玩三小啊~~~
 
 > 開啟gzip有啥好處？
 >
