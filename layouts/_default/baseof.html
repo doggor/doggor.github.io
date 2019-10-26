@@ -35,6 +35,8 @@
     {{ $serviceworkerloader := resources.Get "js/service-worker-loader.js" | minify }}
     <script src="{{ $serviceworkerloader.Permalink }}" defer></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.google-analytics.com">
     {{ $gtag := resources.Get "js/gtag.js" | minify }}
     <script src="{{ $gtag.Permalink }}" defer></script>
     <!-- sidebar -->
