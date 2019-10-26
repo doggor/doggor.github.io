@@ -80,6 +80,10 @@ mysqlbinlog -v mysql-bin.001* | awk '/table_1/,/;/' > mysql-0089.buy.sql
 3. 各 table 的首條 INSERT query 的主鍵沒有重複出現在備份上﹙duplicate entry﹚；
 4. 對於有時間截欄位的table, 例如包含`created_at`、`updated_at`欄位的table，從它的INSERT query, UPDATE query中出現的時間值去再次確保該段query未曾執行在備份數據上。
 
+### 暫停索引和外鍵檢查
+
+如果query數量很多，可參考[下一篇](/posts/stop-mysql-indexing-and-reference-checking)暫停索引和外鍵檢查。
+
 ### 執行query
 
 調整好.sql文件後，你可以使用`mysql`執行這些query︰
@@ -87,6 +91,8 @@ mysqlbinlog -v mysql-bin.001* | awk '/table_1/,/;/' > mysql-0089.buy.sql
 ```sh
 mysql -u root -p < mysql-0011.buy.sql
 ```
+
+> 如果你暫停了索引和外鍵檢查，別忘記執行完成後要重啟這兩項喔～
 
 ### 防呆措施
 
