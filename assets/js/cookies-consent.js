@@ -44,8 +44,8 @@
                 },
                 button: {
                     background: "#000",
-                    border: "#00bfff",
-                    text: "#00bfff",
+                    border: "#ffd600",
+                    text: "#ffd600",
                 },
             },
             position: "bottom-right",
