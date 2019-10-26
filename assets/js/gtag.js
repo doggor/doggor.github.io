@@ -1,3 +1,5 @@
+"use strict";
+
 (function(w, d) {
     w.dataLayer = w.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
