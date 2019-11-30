@@ -7,6 +7,7 @@ $lineHeight: $lineWidth / 7;
 
 .app-topbar {
     display: none;
+    box-shadow: $darkest-color 0 .1em .6em .6em;
     transition: transform ease 0.6s;
 
     &.hide {
