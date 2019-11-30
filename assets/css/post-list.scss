@@ -32,3 +32,27 @@
 .posts-list-item-meta {
     font-size: 0.8em;
 }
+
+nav.pagination-conatiner {
+    padding: 1em;
+    text-align: center;
+    font-size: 1.1em;
+
+    ul.pagination {
+        list-style: none;
+
+        li.page-item {
+            display: inline-block;
+            & > a.page-link {
+                display: block;
+                margin: 0 0.2em;
+                min-width: 1.5em;
+                text-align: center;
+            }
+            &.active > a.page-link {
+                background-color: $primary-color;
+                color: $darkest-color;
+            }
+        }
+    }
+}

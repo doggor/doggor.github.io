@@ -4,14 +4,28 @@
     <ul class="posts-list">
         {{ range $index, $element := $.Paginator.Pages }}
         <li class="posts-list-item">
-            <a class="posts-list-item-title" href="{{ .Permalink }}">{{ .Title }}</a>
-            <span class="posts-list-item-description">
-            {{ partial "icon.html" (dict "ctx" $ "name" "clock") }} {{ .ReadingTime }} min read -
-            {{ .PublishDate.Format "Jan 2, 2006" }}
-            </span>
-            <p>{{ .Summary }}</p>
+            <a href="{{ .Permalink }}">
+                <div class="posts-list-item-image">
+                    {{ $image := .Resources.GetMatch "thumbnail.*" }}
+                    {{ if $image }}
+                    {{ $thumbnail := $image.Fill "200x140"}}
+                    {{ $thumbnail2x := $image.Fill "400x280"}}
+                    <img src="{{ $thumbnail.RelPermalink }}" srcset="{{ $thumbnail.RelPermalink }}, {{ $thumbnail2x.RelPermalink }} 2x" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" alt="">
+                    {{ end }}
+                </div>
+                <div class="posts-list-item-text">
+                    <span>{{ .Title }}</span>
+                    <div class="posts-list-item-description">
+                        <span class="posts-list-item-meta">{{ partial "icon.html" (dict "ctx" $ "name" "clock") }} {{ .ReadingTime }} min read - {{ .PublishDate.Format "Jan 2, 2006" }}</span>
+                        {{ .Summary }}
+                    </div>
+                </div>
+            </a>
         </li>
         {{ end }}
     </ul>
 </article>
+<nav class="pagination-conatiner">
+    {{ partial "pagination.html" $ }}
+</nav>
 {{ end }}
