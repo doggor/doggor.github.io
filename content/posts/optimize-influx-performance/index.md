@@ -1,7 +1,7 @@
 ---
 title: "InfluxDB使用問題與優化紀錄"
 date: 2019-12-21T10:35:06+08:00
-draft: true
+draft: false
 categories: ["tech"]
 tags: ["influx", "centos", "docker"]
 ---
