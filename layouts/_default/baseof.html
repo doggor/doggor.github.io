@@ -42,9 +42,12 @@
     <!-- sidebar -->
     {{ $sidebarScript := resources.Get "js/sidebar.js" | minify }}
     <script src="{{ $sidebarScript.Permalink }}" defer></script>
+    <!-- darkmode -->
+    {{ $darkmodeScript := resources.Get "js/darkmode.js" | minify }}
+    <script src="{{ $darkmodeScript.Permalink }}" defer></script>
 </head>
 
-<body>
+<body class="darkmode--activated">
     <header class="app-header">
         <h3 class="app-header-wanna-say">&nbsp;</h3>
         <h1 class="app-header-my-face">_(:з」∠)_</h1>

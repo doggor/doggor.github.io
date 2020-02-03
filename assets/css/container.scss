@@ -19,5 +19,5 @@
 
 @keyframes show-main-cover {
     from { background-color: transparent; }
-	to   { background-color: transparentize($darkest-color, .2); }
+	to   { background-color: transparentize($color-dark-bg, .2); }
 }

@@ -2,14 +2,23 @@
 
 .post-title {
     display: inline;
-    color: $lightest-color;
+    color: $color-light-highlight;
+
+    @include at-dark {
+        color: $color-dark-highlight;
+    }
 }
 
 .post-content pre {
-    border-left: 0.2em solid darken($primary-color, 16%);
+    border-left: 0.2em solid $color-light-highlight;
     padding-left: 1em;
     padding: 0.5em;
-    background-color: #000;
+    background-color: $color-fixed-code-bg;
+    color: $color-dark-text;
+
+    @include at-dark {
+        border-left-color: $color-dark-highlight;
+    }
 }
 
 .post-meta {
@@ -28,12 +37,8 @@
     font-size: 0.9em;
     border-radius: 0.2em;
     white-space: nowrap;
-    background: rgba(255, 255, 255, 0.1);
-    transition: background 0.8s;
 
-    &:hover {
-        background: rgba(255, 255, 255, 0.3);
-    }
+    @extend %tag-colors;
 }
 
 #share-buttons {

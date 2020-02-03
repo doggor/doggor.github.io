@@ -9,3 +9,37 @@ $dark-color: #242930;
 $light-color: #afbac4;
 $lightest-color: #ffd600;
 $primary-color: #ffd600;
+
+$color-fixed-code-bg: #242930;
+
+$color-light-bg: #fff;
+$color-light-text: #000;
+$color-light-highlight: #009688;
+$color-light-highlight-hover: #0097a7;
+
+$color-dark-bg: #16191d;
+$color-dark-text: #afbac4;
+$color-dark-highlight: #ffd600;
+$color-dark-highlight-hover: #ffd600;
+
+@mixin at-dark {
+    @at-root body.darkmode--activated & {
+        @content;
+    }
+}
+
+%tag-colors {
+    background-color: rgba(0, 0, 0, 0.1);
+
+    @include at-dark {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+
+        @include at-dark {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    }
+}

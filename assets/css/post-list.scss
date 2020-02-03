@@ -23,7 +23,12 @@
 }
 
 .posts-list-item-description {
-    color: $light-color;
+    color: $color-light-text;
+
+    @include at-dark {
+        color: $color-dark-text;
+    }
+
     p {
         margin-bottom: 0;
     }
@@ -50,8 +55,13 @@ nav.pagination-conatiner {
                 text-align: center;
             }
             &.active > a.page-link {
-                background-color: $primary-color;
-                color: $darkest-color;
+                background-color: $color-light-highlight;
+                color: $color-light-bg;
+
+                @include at-dark {
+                    background-color: $color-dark-highlight;
+                    color: $color-dark-bg;
+                }
             }
         }
     }

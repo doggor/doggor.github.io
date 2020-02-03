@@ -9,11 +9,15 @@
     width: $sidebarWidth;
     min-height: 100vh;
     padding: 2.5em;
-    background: $darkest-color;
+    background: $color-light-bg;
     text-align: center;
     overflow: auto;
     transition: transform ease 0.6s;
     z-index: 99;
+
+    @include at-dark {
+        background-color: $color-dark-bg;
+    }
 }
 
 .app-header-wanna-say {
@@ -22,7 +26,7 @@
         display: inline-block;
         margin-left: 0.1em;
         height: 1.4em;
-        border-left: 0.2em solid $light-color;
+        border-left: 0.2em solid $color-dark-text;
         vertical-align: text-bottom;
     }
     &.shining-cursor::after {
@@ -40,7 +44,11 @@
 
 .app-header-links {
     font-size: 2em;
-    color: $lightest-color;
+    color: $color-light-highlight;
+
+    @include at-dark {
+        color: $color-dark-highlight;
+    }
 
     a {
         margin: 0 0.1em;

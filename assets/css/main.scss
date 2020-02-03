@@ -18,8 +18,18 @@ html {
 body {
     margin: 0;
     font-family: sans-serif;
-    background: $darkest-color;
-    color: $light-color;
+    background: $color-light-bg;
+    color: $color-light-text;
+
+    &.darkmode-transition {
+        transition: all 0.4s;
+        transition-property: background-color, color;
+    }
+
+    &.darkmode--activated {
+        background-color: $color-dark-bg;
+        color: $color-dark-text;
+    }
 }
 
 h1,
@@ -29,16 +39,28 @@ h4,
 h5,
 h6 {
     margin: 3em 0 1em;
-    color: $lightest-color;
+    color: $color-light-highlight;
+
+    @include at-dark {
+        color: $color-dark-highlight;
+    }
 }
 
 a {
-    color: $primary-color;
     text-decoration: none;
     transition: color 0.4s;
+    color: $color-light-highlight;
 
     &:hover {
-        color: $lightest-color;
+        color: $color-light-highlight-hover;
+    }
+
+    @include at-dark {
+        color: $color-dark-highlight;
+
+        &:hover {
+            color: $color-dark-highlight-hover;
+        }
     }
 }
 
@@ -47,9 +69,14 @@ pre {
 }
 
 blockquote {
-    background-color: $dark-color;
     margin: 1em 0;
     padding: 0.5em;
+    font-style: italic;
+    border-left: solid 0.3em $color-light-highlight;
+
+    @include at-dark {
+        border-left-color: $color-dark-highlight;
+    }
 }
 
 blockquote > * {
@@ -72,5 +99,6 @@ p {
     margin: 4px;
     padding: 5px 8px;
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.1);
+
+    @extend %tag-colors;
 }

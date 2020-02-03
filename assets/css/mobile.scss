@@ -20,8 +20,12 @@
     left: 0;
     right: 0;
     height: $topbarHeight;
-    background-color: $darkest-color;
     z-index: 99;
+    background-color: $color-light-bg;
+
+    @include at-dark {
+        background-color: $color-dark-bg;
+    }
 }
 
 .app-container {
