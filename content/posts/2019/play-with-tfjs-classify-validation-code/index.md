@@ -10,13 +10,13 @@ tags: ["js", "react", "tfjs"]
 
 <!--more-->
 
-*如果想重溫驗證碼製作方法，[按此傳送門](/posts/play-with-tfjs-validation-code)*
+*如果想重溫驗證碼製作方法，[按此傳送門](/posts/2019/play-with-tfjs-validation-code)*
 
 這邊我做了個[demo](https://doggor.github.io/tfjs-text-classification-demo/)放在Github，讓大家可以親自體驗使用tfjs做訓練，原碼可以在[這裡](https://github.com/doggor/tfjs-text-classification-demo)找到。下面我來説明一下是如何使用的。
 
 首先䦕個新分頁到我的Demo page: [https://doggor.github.io/tfjs-text-classification-demo/](https://doggor.github.io/tfjs-text-classification-demo/)，應該會看到一行操作欄：
 
-{{<figure src="/posts/play-with-tfjs-classify-validation-code/01.png" link="/posts/play-with-tfjs-classify-validation-code/01.png" target="_blank">}}
+{{<figure src="/posts/2019/play-with-tfjs-classify-validation-code/01.png" link="/posts/2019/play-with-tfjs-classify-validation-code/01.png" target="_blank">}}
 
 簡單說明一下每個按鈕作用：
 
@@ -30,7 +30,7 @@ tags: ["js", "react", "tfjs"]
 
 剛開始我們沒有任何模型可用。點擊`New`來建立一個新模型：
 
-{{<figure src="/posts/play-with-tfjs-classify-validation-code/02.png" link="/posts/play-with-tfjs-classify-validation-code/02.png" target="_blank">}}
+{{<figure src="/posts/2019/play-with-tfjs-classify-validation-code/02.png" link="/posts/2019/play-with-tfjs-classify-validation-code/02.png" target="_blank">}}
 
 預設會給予一個隨機名字，你可以直接使用它，或者改一個容易記憶、有意義的名字。要注意一點，如果已經存在同名的模型，它將會被覆蓋。
 
@@ -67,15 +67,15 @@ tags: ["js", "react", "tfjs"]
 
 確定後，會看到這個新模型在操作欄下方：
 
-{{<figure src="/posts/play-with-tfjs-classify-validation-code/03.png" link="/posts/play-with-tfjs-classify-validation-code/03.png" target="_blank">}}
+{{<figure src="/posts/2019/play-with-tfjs-classify-validation-code/03.png" link="/posts/2019/play-with-tfjs-classify-validation-code/03.png" target="_blank">}}
 
 點選這個模型，頁面的右方會彈出有關模型的資訊，這是使用[tfjs-vis](https://storage.googleapis.com/tfjs-vis/mnist/dist/index.html)做的：
 
-{{<figure src="/posts/play-with-tfjs-classify-validation-code/04.png" link="/posts/play-with-tfjs-classify-validation-code/04.png" target="_blank">}}
+{{<figure src="/posts/2019/play-with-tfjs-classify-validation-code/04.png" link="/posts/2019/play-with-tfjs-classify-validation-code/04.png" target="_blank">}}
 
 上面顯示了模型構造：先經過兩層 convolution + pooling，然後flatten平攤成一維陣列，最後經過一個全連接層(dense)𨌺出。可以清楚看出每層的資料輸出形狀(Output Shape)，與及需要訓練的參數個數(# of Params)。`Model Layers`下方顯示各層參數的數值分佈，你可以觀察一下模型訓練前和訓練後的參數變化。
 
-{{<figure src="/posts/play-with-tfjs-classify-validation-code/05.png" link="/posts/play-with-tfjs-classify-validation-code/05.png" target="_blank">}}
+{{<figure src="/posts/2019/play-with-tfjs-classify-validation-code/05.png" link="/posts/2019/play-with-tfjs-classify-validation-code/05.png" target="_blank">}}
 
 接著我們來進行訓練。每一次訓練(1 epoch)都會採用一組新生成的數據，每組數據為0~9 + a~z + A~Z共62個字母不重複的驗證碼圖片。
 
@@ -83,13 +83,13 @@ tags: ["js", "react", "tfjs"]
 
 所以接下來訓練它100次來看看成果。點選`Train`按鈕，epochs設定為100，然後確認：
 
-{{<figure src="/posts/play-with-tfjs-classify-validation-code/06.png" link="/posts/play-with-tfjs-classify-validation-code/06.png" target="_blank">}}
+{{<figure src="/posts/2019/play-with-tfjs-classify-validation-code/06.png" link="/posts/2019/play-with-tfjs-classify-validation-code/06.png" target="_blank">}}
 
 訓練採用的Optimizer是Adam，一種效率比較好的參數優化器，Loss計算則是categoricalCrossentropy，適用於多分類埸境，像這次案例要把驗證碼圖片分類到62種字母之中。
 
 訓綀時會出現`Training`Tab，當中有兩個線圖，第一個是模型的loss(損失，即當前模型斦預測的結果與正確答案之間相差多少)，第二個是Accuracy(精準度，預測出正確答案的比率)。完成訓練後兩個線圖應該會有以下類似的形狀：
 
-{{<figure src="/posts/play-with-tfjs-classify-validation-code/07.png" link="/posts/play-with-tfjs-classify-validation-code/07.png" target="_blank">}}
+{{<figure src="/posts/2019/play-with-tfjs-classify-validation-code/07.png" link="/posts/2019/play-with-tfjs-classify-validation-code/07.png" target="_blank">}}
 
 在每一次訓練後，為了確認模型在實際應用時的成效，我們會同時採用另一組新的數據(validation set)來計算它的loss和accuracy，模擬未曾接觸過的真實數據，顯示為黃色線；藍色線則是拿原本用來做訓練的數據來計算的。
 
@@ -99,19 +99,19 @@ tags: ["js", "react", "tfjs"]
 
 完成訓練後，我們給它做個測驗，看一看它成積如何。在操作欄點選`Evaluate`，等待Accuracy和Confusion Matrix圖表出現：
 
-{{<figure src="/posts/play-with-tfjs-classify-validation-code/08.png" link="/posts/play-with-tfjs-classify-validation-code/08.png" target="_blank">}}
+{{<figure src="/posts/2019/play-with-tfjs-classify-validation-code/08.png" link="/posts/2019/play-with-tfjs-classify-validation-code/08.png" target="_blank">}}
 
 這個測驗會生成10組數據給模型做預測。Accuracy圖表顯示每個字母的預測凖確率，Confusion Matrix顯示每個字母被預測成各種字母的次數。遺憾的是，把這62個分類一並顯示在如此狹小的空間，可以得知大概形狀但無法看清楚上面的數字，有點杯具......
 
 > tfjs-vis方便但不好用，UI體驗有點不足
 
-{{<figure src="/posts/play-with-tfjs-classify-validation-code/09.png" link="/posts/play-with-tfjs-classify-validation-code/09.png" target="_blank">}}
+{{<figure src="/posts/2019/play-with-tfjs-classify-validation-code/09.png" link="/posts/2019/play-with-tfjs-classify-validation-code/09.png" target="_blank">}}
 
 最後讓我們感受一下實際成果。點選`Predict`等待結果(相比`Evaluate`這次只預測一組數據，結果應該會較快顯示出來)：
 
-{{<figure src="/posts/play-with-tfjs-classify-validation-code/10.png" link="/posts/play-with-tfjs-classify-validation-code/10.png" target="_blank">}}
+{{<figure src="/posts/2019/play-with-tfjs-classify-validation-code/10.png" link="/posts/2019/play-with-tfjs-classify-validation-code/10.png" target="_blank">}}
 
-{{<figure src="/posts/play-with-tfjs-classify-validation-code/11.png" link="/posts/play-with-tfjs-classify-validation-code/11.png" target="_blank">}}
+{{<figure src="/posts/2019/play-with-tfjs-classify-validation-code/11.png" link="/posts/2019/play-with-tfjs-classify-validation-code/11.png" target="_blank">}}
 
 每個驗證碼下方是其預測值，綠色表示預測正確，紅色則錯誤。
 

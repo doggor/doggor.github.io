@@ -10,7 +10,7 @@ puppeteer_dev_profile是透過puppeteer操作Headless Chrome時會在 /tmp 自�
 
 <!--more-->
 
-{{<figure src="/posts/remove-puppeteer-dev-profiles/screenshot.png" link="posts/remove-puppeteer-dev-profiles/screenshot.png" target="_blank">}}
+{{<figure src="/posts/2019/remove-puppeteer-dev-profiles/screenshot.png" link="posts/remove-puppeteer-dev-profiles/screenshot.png" target="_blank">}}
 
 Github上已有人提出[這個問題](https://github.com/puppeteer/puppeteer/issues/1791)，而其[解決方法](https://github.com/puppeteer/puppeteer/issues/1791#issuecomment-367715074)是程序在關閉headless chrome後接著移除相關文件夾。
 

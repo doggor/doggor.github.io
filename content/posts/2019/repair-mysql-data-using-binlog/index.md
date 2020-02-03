@@ -82,7 +82,7 @@ mysqlbinlog -v mysql-bin.001* | awk '/table_1/,/;/' > mysql-0089.buy.sql
 
 ### 暫停索引和外鍵檢查
 
-如果query數量很多，可參考[下一篇](/posts/stop-mysql-indexing-and-reference-checking)暫停索引和外鍵檢查。
+如果query數量很多，可參考[下一篇](/posts/2019/stop-mysql-indexing-and-reference-checking)暫停索引和外鍵檢查。
 
 ### 執行query
 

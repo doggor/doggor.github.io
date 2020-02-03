@@ -10,13 +10,13 @@ tags: ["js", "canvas", "tfjs"]
 
 <!--more-->
 
-*這篇重點是重現驗證碼圙案，如果你是想了解如何使用tensorflow.js辨識字母，請到[下一篇文章](/posts/play-with-tfjs-classify-validation-code)*
+*這篇重點是重現驗證碼圙案，如果你是想了解如何使用tensorflow.js辨識字母，請到[下一篇文章](/posts/2019/play-with-tfjs-classify-validation-code)*
 
 > *這裡純學術研究，內容上如有任何冒犯請見諒。*
 
 因為活動已完結所以網頁也關了，下面附上截圖先譲各位了解一下：
 
-{{<figure src="/posts/play-with-tfjs-validation-code/website-screenshot.png" link="/posts/play-with-tfjs-validation-code/website-screenshot.png" target="_blank" caption="2019居屋網上申請表格截圖">}}
+{{<figure src="/posts/2019/play-with-tfjs-validation-code/website-screenshot.png" link="/posts/2019/play-with-tfjs-validation-code/website-screenshot.png" target="_blank" caption="2019居屋網上申請表格截圖">}}
 
 可以看出圖案由3部分組成：
 

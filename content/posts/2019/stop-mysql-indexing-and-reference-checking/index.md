@@ -10,7 +10,7 @@ tags: ["mysql", "indexing"]
 
 <!--more-->
 
-[上一篇](/posts/repair-mysql-data-using-binlog)寫了如何使用binlog修復MySQL，如果需要執行非常多的`INSERT`/`UPDATE` query，建議先為涉及的table停用indexes或外鍵檢查，如此將可節省大量時間。
+[上一篇](/posts/2019/repair-mysql-data-using-binlog)寫了如何使用binlog修復MySQL，如果需要執行非常多的`INSERT`/`UPDATE` query，建議先為涉及的table停用indexes或外鍵檢查，如此將可節省大量時間。
 
 ### MyISAM
 
