@@ -20,11 +20,8 @@ body {
     font-family: sans-serif;
     background: $color-light-bg;
     color: $color-light-text;
-
-    &.darkmode-transition {
-        transition: all 0.4s;
-        transition-property: background-color, color;
-    }
+    transition: all 0.4s;
+    transition-property: background-color, color;
 
     &.darkmode--activated {
         background-color: $color-dark-bg;

@@ -1,0 +1,125 @@
+.planet-switch {
+    display: block;
+    $radius: 16px;
+    $sun-color: #ffd600;
+    $moon-color: #cfd8dc;
+    $switch-duration: 0.4s;
+
+    position: relative;
+    width: $radius * 4;
+    height: $radius * 2;
+    border-radius: $radius;
+
+    //positioning
+    margin: $radius * 2 auto;
+
+    transition: background-color $switch-duration;
+    background-color: #64b5f6;
+    @include at-dark {
+        background-color: #311b92;
+    }
+
+    cursor: pointer;
+
+    //hide checkbox input
+    input[type=checkbox] {
+        display: none;
+    }
+
+    %planet-shape {
+        position: absolute;
+        width: $radius * 2;
+        height: $radius * 2;
+    }
+
+    .planet {
+        @extend %planet-shape;
+        transition: transform $switch-duration;
+
+        //moon position
+        @include at-dark {
+            transform: translateX($radius * 2);
+        }
+
+        .core {
+            @extend %planet-shape;
+            border-radius: 50%;
+            transition: background-color $switch-duration;
+
+            //sun
+            background-color: lighten($sun-color, 35%);
+            //moon
+            @include at-dark {
+                background-color: $moon-color;
+                box-shadow: 0 0 $radius lighten($moon-color, 50%);
+                animation: moon-shadowing 3s ease infinite;
+                @keyframes moon-shadowing {
+                    50% {
+                        box-shadow: 0 0 $radius * 3/4 $moon-color;
+                    }
+                }
+            }
+        }
+
+        .rays {
+            @extend %planet-shape;
+
+            animation: sun-rolling 3s linear infinite;
+            @keyframes sun-rolling {
+                to {
+                    transform: rotate(-30deg);
+                }
+            }
+
+            transition: opacity $switch-duration;
+
+            //moon
+            @include at-dark {
+                opacity: 0;
+            }
+
+            & > .ray {
+                @extend %planet-shape;
+                background-color: $sun-color;
+                &:nth-child(2) {
+                    transform: rotate(30deg);
+                }
+                &:nth-child(3) {
+                    transform: rotate(60deg);
+                }
+            }
+        }
+
+        .hole {
+            position: absolute;
+            border-radius: 50%;
+            transition: opacity $switch-duration;
+
+            //sun
+            opacity: 0;
+
+            //moon
+            @include at-dark {
+                opacity: 1;
+            }
+
+
+            & {
+                top: 15%;
+                left: 10%;
+                width: $radius * 4 / 5;
+                height: $radius;
+                background-color: darken($moon-color, 6%);
+                transform: rotate(30deg);
+            }
+
+            & ~ .hole {
+                top: 30%;
+                left: 60%;
+                width: $radius / 3;
+                height: $radius / 3;
+                background-color: darken($moon-color, 10%);
+            }
+        }
+    }
+}

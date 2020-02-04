@@ -2,7 +2,7 @@
 @import "./colors";
 
 $padding: 12px;
-$lineWidth: $topbarHeight - (2 * $padding);
+$lineWidth: $topbar-height - (2 * $padding);
 $lineHeight: $lineWidth / 7;
 
 .app-topbar {
@@ -10,15 +10,15 @@ $lineHeight: $lineWidth / 7;
     transition: transform ease 0.6s;
 
     &.hide {
-        transform: translateY(-$topbarHeight);
+        transform: translateY(-$topbar-height);
     }
 
     .app-topbar-menu-btn {
         display: block;
         float: left;
         position: relative;
-        width: $topbarHeight;
-        height: $topbarHeight;
+        width: $topbar-height;
+        height: $topbar-height;
         padding: $padding;
 
         span {
@@ -52,13 +52,13 @@ $lineHeight: $lineWidth / 7;
         display: block;
         margin: 0 0 0 .5em;
         float: left;
-        line-height: $topbarHeight;
+        line-height: $topbar-height;
         transition: opacity ease 0.6s;
     }
 }
 
 .app-header.show ~ .app-topbar {
-    transform: translateX($sidebarWidth);
+    transform: translateX($sidebar-width);
 
     & .app-topbar-menu-btn {
         span {

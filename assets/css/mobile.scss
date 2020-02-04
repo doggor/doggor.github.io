@@ -3,14 +3,14 @@
 
 .app-header {
     padding: 2.5em 0.8rem;
-    transform: translateX(-$sidebarWidth);
+    transform: translateX(-$sidebar-width);
     &.show {
         transform: none;
     }
 }
 
 .app-header.show + .app-container {
-    transform: translateX($sidebarWidth);
+    transform: translateX($sidebar-width);
 }
 
 .app-topbar {
@@ -19,7 +19,7 @@
     top: 0;
     left: 0;
     right: 0;
-    height: $topbarHeight;
+    height: $topbar-height;
     z-index: 99;
     background-color: $color-light-bg;
 
@@ -30,7 +30,7 @@
 
 .app-container {
     margin-left: 0;
-    padding: $topbarHeight 0.8rem;
+    padding: $topbar-height 0.8rem;
 }
 
 .posts-list-item-image {

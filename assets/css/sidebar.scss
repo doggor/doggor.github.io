@@ -1,18 +1,20 @@
 @import "./variables";
 @import "./colors";
+@import "./darkmode-switch";
 
 .app-header {
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
-    width: $sidebarWidth;
+    width: $sidebar-width;
     min-height: 100vh;
     padding: 2.5em;
     background: $color-light-bg;
     text-align: center;
     overflow: auto;
-    transition: transform ease 0.6s;
+    transition: all 0.4s;
+    transition-property: background-color, color;
     z-index: 99;
 
     @include at-dark {
@@ -43,6 +45,7 @@
 }
 
 .app-header-links {
+    margin: 1em 0;
     font-size: 2em;
     color: $color-light-highlight;
 

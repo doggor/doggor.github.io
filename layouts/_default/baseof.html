@@ -43,7 +43,7 @@
     {{ $sidebarScript := resources.Get "js/sidebar.js" | minify }}
     <script src="{{ $sidebarScript.Permalink }}" defer></script>
     <!-- darkmode -->
-    {{ $darkmodeScript := resources.Get "js/darkmode.js" | minify }}
+    {{ $darkmodeScript := resources.Get "js/darkmode-switch.js" | minify }}
     <script src="{{ $darkmodeScript.Permalink }}" defer></script>
 </head>
 
@@ -71,6 +71,20 @@
             <a target="_blank" href="{{ .url }}" rel="noopener" aria-label="Github">{{ partial "icon.html" (dict "ctx" $ "name" .name ) }}</a>
             {{ end }}
         </div>
+
+        <label class="planet-switch">
+            <input type="checkbox" name="darkmode" checked="checked" aria-label="toggle darkmode" id="darkmode-switch-checkbox">
+            <div class="planet moon">
+                <div class="rays">
+                    <div class="ray"></div>
+                    <div class="ray"></div>
+                    <div class="ray"></div>
+                </div>
+                <div class="core"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+        </label>
     </header>
 
     <div class="app-topbar">
