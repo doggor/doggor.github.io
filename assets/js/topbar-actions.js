@@ -8,21 +8,24 @@
     function delClass(ele, className) { ele.className = ele.className.replace(className, "").trim(); }
 
     /** menu btn action */
-    const menuBtn = eleByClass("app-topbar-menu-btn");
-    const sidebar = eleByClass("app-header");
-    menuBtn.onclick = function() {
+    var menuBtn = eleByClass("app-topbar-menu-btn");
+    var sidebar = eleByClass("app-header");
+    var appContainer = eleByClass("app-container");
+    function toggleSidebar() {
         hasClass(sidebar, "show") ? delClass(sidebar, "show") : addClass(sidebar, "show");
     };
+    menuBtn.addEventListener("click", toggleSidebar);
+    appContainer.addEventListener("click", toggleSidebar);
 
     /** top bar scrolling effect */
-    let isScrolling = false;
-    let isScrollingTimer = null;
-    let lastScroll = 0;
-    let animationTick = false;
-    const topbar = eleByClass("app-topbar");
+    var isScrolling = false;
+    var isScrollingTimer = null;
+    var lastScroll = 0;
+    var animationTick = false;
+    var topbar = eleByClass("app-topbar");
     function onScrolling() {
         isScrolling = true;
-        const diff = lastScroll - w.scrollY;
+        var diff = lastScroll - w.scrollY;
         if (diff > 0 && hasClass(topbar, "hide")) {
             delClass(topbar, "hide");
         }
