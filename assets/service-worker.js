@@ -38,5 +38,5 @@ if (workbox) {
 
     workbox.googleAnalytics.initialize();
 } else {
-    console.log(`Oops, Workbox didn"t load!`);
+    console.log(`Oops, Workbox didn't load!`);
 }

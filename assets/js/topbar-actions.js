@@ -14,8 +14,14 @@
     function toggleSidebar() {
         hasClass(sidebar, "show") ? delClass(sidebar, "show") : addClass(sidebar, "show");
     };
-    menuBtn.addEventListener("click", toggleSidebar);
-    appContainer.addEventListener("click", toggleSidebar);
+    menuBtn.addEventListener("click", function() {
+        hasClass(sidebar, "show") ? delClass(sidebar, "show") : addClass(sidebar, "show");
+    });
+    appContainer.addEventListener("click", function() {
+        if (hasClass(sidebar, "show")) {
+            delClass(sidebar, "show");
+        }
+    });
 
     /** top bar scrolling effect */
     var isScrolling = false;

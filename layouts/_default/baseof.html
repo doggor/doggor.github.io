@@ -34,17 +34,17 @@
     <!-- worker to load: {{ $serviceworker.Permalink }} -->
     {{ $serviceworkerloader := resources.Get "js/service-worker-loader.js" | minify }}
     <script src="{{ $serviceworkerloader.Permalink }}" defer></script>
+    <!-- darkmode -->
+    {{ $darkmodeScript := resources.Get "js/darkmode-switch.js" | minify }}
+    <script src="{{ $darkmodeScript.Permalink }}" async></script>
+    <!-- sidebar -->
+    {{ $sidebarScript := resources.Get "js/sidebar.js" | minify }}
+    <script src="{{ $sidebarScript.Permalink }}" defer></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://www.google-analytics.com">
     {{ $gtag := resources.Get "js/gtag.js" | minify }}
     <script src="{{ $gtag.Permalink }}" defer></script>
-    <!-- sidebar -->
-    {{ $sidebarScript := resources.Get "js/sidebar.js" | minify }}
-    <script src="{{ $sidebarScript.Permalink }}" defer></script>
-    <!-- darkmode -->
-    {{ $darkmodeScript := resources.Get "js/darkmode-switch.js" | minify }}
-    <script src="{{ $darkmodeScript.Permalink }}" defer></script>
 </head>
 
 <body class="darkmode--activated">

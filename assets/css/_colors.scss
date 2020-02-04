@@ -1,21 +1,9 @@
-// $darkest-color: {{ .Site.Params.style.darkestColor | default "#242930" }};
-// $dark-color: {{ .Site.Params.style.darkColor | default "#353b43" }};
-// $light-color: {{ .Site.Params.style.lightColor | default "#afbac4" }};
-// $lightest-color: {{ .Site.Params.style.lightestColor | default "#ffffff" }};
-// $primary-color: {{ .Site.Params.style.primaryColor | default "#57cc8a" }};
-
-$darkest-color: #16191d;
-$dark-color: #242930;
-$light-color: #afbac4;
-$lightest-color: #ffd600;
-$primary-color: #ffd600;
-
 $color-fixed-code-bg: #242930;
 
 $color-light-bg: #fff;
 $color-light-text: #000;
-$color-light-highlight: #009688;
-$color-light-highlight-hover: #0097a7;
+$color-light-highlight: #1565c0;
+$color-light-highlight-hover: #1565c0;
 
 $color-dark-bg: #16191d;
 $color-dark-text: #afbac4;
