@@ -20,8 +20,11 @@ body {
     font-family: sans-serif;
     background: $color-light-bg;
     color: $color-light-text;
-    transition: all 0.4s;
     transition-property: background-color, color;
+
+    &.darkmode-ready {
+        transition: all 0.4s;
+    }
 
     &.darkmode--activated {
         background-color: $color-dark-bg;
@@ -45,8 +48,12 @@ h6 {
 
 a {
     text-decoration: none;
-    transition: color 0.4s;
+
     color: $color-light-highlight;
+
+    @root body.darkmode-ready & {
+        transition: color 0.4s;
+    }
 
     &:hover {
         color: $color-light-highlight-hover;

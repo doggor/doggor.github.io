@@ -38,4 +38,9 @@
             toLight();
         }
     }
+
+    //turn on transition
+    setTimeout(() => {
+        d.body.className = (d.body.className + " darkmode-ready").trim();
+    }, 1000);
 })(window, document);

@@ -13,7 +13,10 @@
     //positioning
     margin: $radius * 2 auto;
 
-    transition: background-color $switch-duration;
+    @root .darkmode-ready & {
+        transition: background-color $switch-duration;
+    }
+
     background-color: #64b5f6;
     @include at-dark {
         background-color: #311b92;
@@ -34,7 +37,10 @@
 
     .planet {
         @extend %planet-shape;
-        transition: transform $switch-duration;
+
+        @root .darkmode-ready & {
+            transition: transform $switch-duration;
+        }
 
         //moon position
         @include at-dark {
