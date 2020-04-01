@@ -2,7 +2,7 @@
 title: "在Rust中使用enum自定義錯誤類型"
 date: 2020-03-28T12:28:45+08:00
 draft: false
-categories: ["tech"]
+categories: ["coding"]
 tags: ["rust", "design-pattern"]
 ---
 

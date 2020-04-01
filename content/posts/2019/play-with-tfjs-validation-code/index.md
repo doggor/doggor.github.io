@@ -2,7 +2,7 @@
 title: "[試一下tensorflow.js] 先用canvas畫驗證碼"
 date: 2019-08-31T10:42:02+08:00
 draft: false
-categories: ["tech"]
+categories: ["coding", "machine-learning"]
 tags: ["js", "canvas", "tfjs"]
 ---
 

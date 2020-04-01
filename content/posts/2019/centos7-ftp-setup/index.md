@@ -2,7 +2,7 @@
 title: "簡記一下CentOS 7上安裝FTP server步驟"
 date: 2019-08-04T12:25:35+08:00
 draft: false
-categories: ["tech"]
+categories: ["devops"]
 tags: ["centos","ftp"]
 ---
 

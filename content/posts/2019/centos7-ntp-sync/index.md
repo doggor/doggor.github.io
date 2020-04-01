@@ -2,7 +2,7 @@
 title: "CentOS 7系統時間設定與NTP同步"
 date: 2019-03-03T23:01:20+08:00
 draft: false
-categories: ["tech"]
+categories: ["devops"]
 tags: ["centos","ntp"]
 ---
 

@@ -2,7 +2,7 @@
 title: "使用Nodejs直接回傳Gzipped HTML內容"
 date: 2019-06-01T00:00:00+08:00
 draft: false
-categories: ["tech"]
+categories: ["coding"]
 tags: ["nodejs", "gzip", "html"]
 ---
 

@@ -2,7 +2,7 @@
 title: "如何讓GitLab Runner也可以git clone私有Repositories"
 date: 2019-08-03T20:59:24+08:00
 draft: false
-categories: ["tech"]
+categories: ["devops"]
 tags: ["gitlab","ci","git"]
 ---
 

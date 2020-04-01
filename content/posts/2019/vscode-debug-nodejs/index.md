@@ -2,7 +2,7 @@
 title: "在VS Code遠端偵錯NodeJS程序"
 date: 2019-03-05T10:48:55+08:00
 draft: false
-categories: ["tech"]
+categories: ["coding"]
 tags: ["vscode","nodejs","debug"]
 ---
 

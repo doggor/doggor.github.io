@@ -2,7 +2,7 @@
 title: "利用binlog修復MySQL"
 date: 2019-10-01T18:06:19+08:00
 draft: false
-categories: ["tech"]
+categories: ["database", "devops"]
 tags: ["mysql", "binlog", "sql"]
 ---
 

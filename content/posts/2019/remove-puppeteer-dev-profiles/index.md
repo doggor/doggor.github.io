@@ -2,7 +2,7 @@
 title: "用cronjob解決puppeteer_dev_profile殘留問題"
 date: 2019-12-05T22:02:16+08:00
 draft: false
-categories: ["tech"]
+categories: ["devops"]
 tags: ["nodejs", "puppeteer", "headless-chrome"]
 ---
 

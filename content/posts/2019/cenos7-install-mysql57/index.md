@@ -2,7 +2,7 @@
 title: "CentOS 7安裝MySQL 5.7"
 date: 2019-03-04T10:38:14+08:00
 draft: false
-categories: ["tech"]
+categories: ["devops"]
 tags: ["centos","mysql"]
 ---
 

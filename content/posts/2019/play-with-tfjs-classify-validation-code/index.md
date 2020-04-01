@@ -2,7 +2,7 @@
 title: "[試一下tensorflow.js] 辦識驗證碼字母"
 date: 2019-09-01T18:18:26+08:00
 draft: false
-categories: ["tech"]
+categories: ["coding", "machine-learning"]
 tags: ["js", "react", "tfjs"]
 ---
 
