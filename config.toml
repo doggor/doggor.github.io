@@ -13,6 +13,9 @@ disqusShortname = "doggor-coding-notebook"
   [[params.social]]
     name = "github"
     url = "https://github.com/doggor"
+  [[params.social]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/andy-ching-hk"
   [params.style]
     darkestColor = "#16191d"
     darkColor = "#242930"
