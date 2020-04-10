@@ -7,7 +7,7 @@ $lineHeight: $lineWidth / 7;
 
 .app-topbar {
     display: none;
-    transition: transform ease 0.6s;
+    transition: transform ease 0.4s;
 
     &.hide {
         transform: translateY(-$topbar-height);
@@ -28,7 +28,7 @@ $lineHeight: $lineWidth / 7;
             height: $lineHeight;
             background-color: $color-light-highlight;
             border-radius: $lineHeight / 2;
-            transition: transform ease 0.6s;
+            transition: transform ease 0.4s;
 
             @include at-dark {
                 background-color: $color-dark-highlight;
@@ -50,10 +50,9 @@ $lineHeight: $lineWidth / 7;
 
     h3 {
         display: block;
-        margin: 0 0 0 .5em;
-        float: left;
+        margin: 0 0.5em;
+        float: right;
         line-height: $topbar-height;
-        transition: opacity ease 0.6s;
     }
 }
 
@@ -72,9 +71,5 @@ $lineHeight: $lineWidth / 7;
                 transform: translateY($lineHeight * 5) rotate(45deg);
             }
         }
-    }
-
-    & h2 {
-        opacity: 0;
     }
 }
