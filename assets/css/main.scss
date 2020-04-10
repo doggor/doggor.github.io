@@ -51,7 +51,7 @@ a {
 
     color: $color-light-highlight;
 
-    @root body.darkmode-ready & {
+    @at-root body.darkmode-ready & {
         transition: color 0.4s;
     }
 

@@ -13,7 +13,7 @@
     //positioning
     margin: $radius * 2 auto;
 
-    @root .darkmode-ready & {
+    @at-root .darkmode-ready & {
         transition: background-color $switch-duration;
     }
 
@@ -38,7 +38,7 @@
     .planet {
         @extend %planet-shape;
 
-        @root .darkmode-ready & {
+        @at-root .darkmode-ready & {
             transition: transform $switch-duration;
         }
 

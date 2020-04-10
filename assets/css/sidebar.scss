@@ -16,7 +16,7 @@
     transition-property: background-color, color;
     z-index: 99;
 
-    &.darkmode-ready {
+    @at-root body.darkmode-ready & {
         transition: all 0.4s;
     }
 
