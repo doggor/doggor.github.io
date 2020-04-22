@@ -10,7 +10,11 @@ tags: ["mysql", "binlog", "sql"]
 
 <!--more-->
 
-若想了解binlog的構造，美團有一篇不錯的技術文︰https://tech.meituan.com/2017/11/17/mysql-flashback.html
+若想了解binlog的構造，美團有一篇不錯的技術文︰[https://tech.meituan.com/2017/11/17/mysql-flashback.html](https://tech.meituan.com/2017/11/17/mysql-flashback.html)
+
+> Update 2020-04-22
+>
+> 看到另一種更高技能點的修復方法，是直接從MySQL進程手上找回數據：[https://mp.weixin.qq.com/s/CbHNnxq2Qx290SEfz1HjWQ](https://mp.weixin.qq.com/s/CbHNnxq2Qx290SEfz1HjWQ)
 
 ### 相關文件路徑﹙CentOS 7，MySQL 5.7﹚︰
 
@@ -29,7 +33,7 @@ tags: ["mysql", "binlog", "sql"]
 2. 找出最接近該備份時間的binlog。
    例如︰備份的創建時間是 2019-10-01 09:30，則找出一個binlog其創建時間最接近而又不大於2019-10-01 09:30。
    由這個binlog開始，以及往後的所有binlog都是即將要進行操作的對象。
-3. `mysqlbinlog`指令通常已跟隨MySQL一並安裝到主機，而`awk`若不可用請透過包管理器安裝。
+3. [`mysqlbinlog`](https://dev.mysql.com/doc/refman/5.7/en/mysqlbinlog.html)指令通常已跟隨MySQL一並安裝到主機，而[`awk`](https://en.wikipedia.org/wiki/AWK)指令若不可用請透過包管理器安裝。
 
 ### 提取binlog中的query
 
@@ -45,7 +49,7 @@ mysqlbinlog -v mysql-bin.0011 > mysql-0011.sql
 mysqlbinlog -j <MASTER_LOG_POS> -v mysql-bin.0011 > mysql-0011.sql
 ```
 
-若我們只想提取對`table_1`table有影響的 query，可使用`awk`作過濾︰
+若我們只想提取對`table_1` table有影響的 query，可使用`awk`作過濾︰
 
 ```sh
 mysqlbinlog -v mysql-bin.0011 | awk '/table_1/,/;/' > mysql-0011.buy.sql
