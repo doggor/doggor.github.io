@@ -20,11 +20,81 @@ Rust標準庫裡提供了[std::error::Error](https://doc.rust-lang.org/std/error
 
 學習Rust時起初可能會這樣定義一個錯誤類型：
 
-<iframe src="https://bit.ly/2wLTIP1" width="auto" height="400" style="width:100%"></iframe>
+[>> Try Online <<](https://bit.ly/2wLTIP1)
+{{< highlight rust "linenos=table" >}}
+use std::error::Error;
+use std::fmt;
+
+#[derive(Debug)]
+struct MyError;
+
+impl Error for MyError {}
+
+impl fmt::Display for MyError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "My Error")
+    }
+}
+
+fn main() {
+    let err = MyError;
+    println!("{:?}", err);
+}
+{{< / highlight >}}
 
 上面例子好像沒有太大問題，而當你的函數需要按情況返回不同的自定義錯誤時，大概會這樣做：
 
-<iframe src="https://bit.ly/2Uoeop4" width="auto" height="400" style="width:100%"></iframe>
+[>> Try Online <<](https://bit.ly/2Uoeop4)
+{{< highlight rust "linenos=table" >}}
+use std::error::Error;
+use std::fmt;
+use rand::Rng;
+
+/* Define PlaceNameError */
+#[derive(Debug)]
+struct PlaceNameError(String);
+
+impl Error for PlaceNameError {}
+
+impl fmt::Display for PlaceNameError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "Place of {} Not Found", &self.0)
+    }
+}
+/* End of PlaceNameError */
+
+/* Define GeoError */
+#[derive(Debug)]
+struct GeoError(f64, f64);
+
+impl Error for GeoError {}
+
+impl fmt::Display for GeoError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "Point({}, {}) Not Found", &self.0, &self.1)
+    }
+}
+/* End of GeoError */
+
+//function that results in either PlaceNameError or GeoError
+fn do_something() -> Result<(), Box<dyn Error>> {
+    let random_number: isize = rand::thread_rng().gen();
+    if random_number % 2 == 0 {
+        Err(Box::new(PlaceNameError("Mars".to_string())))
+    }
+    else {
+        Err(Box::new(GeoError(2.0, 3.0)))
+    }
+
+}
+
+fn main() {
+    match do_something() {
+        Ok(_) => println!("Nothing happen"),
+        Err(err) => println!("{}", err),
+    }
+}
+{{< / highlight >}}
 
 事情開始變得麻煩：
 
