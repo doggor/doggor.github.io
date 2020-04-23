@@ -42,7 +42,48 @@ Rust標準庫裡提供了[std::error::Error](https://doc.rust-lang.org/std/error
 
 為每一個錯誤類型定義`struct`和實作`Error` trait實在是廢時失事，来看看如果使用`enum`來寫會是甚麼樣子：
 
-<iframe src="https://bit.ly/2WOBKpD" width="auto" height="400" style="width:100%"></iframe>
+[>> Try Online <<](https://bit.ly/2WOBKpD)
+{{< highlight rust "linenos=table" >}}
+use std::error::Error;
+use std::fmt;
+use rand::Rng;
+
+#[derive(Debug)]
+enum MyError {
+    PlaceNameError(String),
+    GeoError(f64, f64),
+}
+
+impl Error for MyError {}
+
+impl fmt::Display for MyError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match *self {
+            MyError::PlaceNameError(ref name) => write!(f, "Place of {} Not Found", name),
+            MyError::GeoError(ref x, ref y) => write!(f, "Point({}, {}) Not Found", x, y),
+        }
+    }
+}
+
+//function that results in either PlaceNameError or GeoError
+fn do_something() -> Result<(), MyError> {
+    let random_number: isize = rand::thread_rng().gen();
+    if random_number % 2 == 0 {
+        Err(MyError::PlaceNameError("Mars".to_string()))
+    }
+    else {
+        Err(MyError::GeoError(2.0, 3.0))
+    }
+}
+
+fn main() {
+    match do_something() {
+        Ok(_) => println!("Nothing happen"),
+        Err(MyError::PlaceNameError(name)) => println!("{} is not a place name", name),
+        Err(MyError::GeoError(x, y)) => println!("({}, {}) is not a correct location", x, y),
+    }
+}
+{{< / highlight >}}
 
 這個`enum`侬然實作了`Error`和`fmt::Display` trait，能當作`Error`實例處理；
 
@@ -57,7 +98,52 @@ Rust標準庫裡提供了[std::error::Error](https://doc.rust-lang.org/std/error
 對於第三方庫的錯誤類型，無論是甚麽資料結構，我們都可以為其實作`From<T>`，以方便重新封装成自定義的Variant：
 
 (由於字數問题所以省略了`impl Error`和`impl fmt::Display`)
-<iframe src="https://bit.ly/2y9MuEG" width="auto" height="400" style="width:100%"></iframe>
+[>> Try Online <<](https://bit.ly/2y9MuEG)
+{{< highlight rust "linenos=table" >}}
+use std::str::{from_utf8, Utf8Error};
+use base64::{DecodeError};
+
+#[derive(Debug)]
+enum MyError {
+    DecodeBase64Error(DecodeError),
+    DecodeUtf8Error(Utf8Error),
+}
+
+impl From<DecodeError> for MyError {
+    fn from(error: DecodeError) -> MyError {
+        MyError::DecodeBase64Error(error)
+    }
+}
+
+impl From<Utf8Error> for MyError {
+    fn from(error: Utf8Error) -> MyError {
+        MyError::DecodeUtf8Error(error)
+    }
+}
+
+fn decode(data: &str) -> Result<String, MyError> {
+    let bytes: &[u8] = &base64::decode(data)?[..];
+
+    let string = from_utf8(bytes)?;
+
+    Ok(string.to_owned())
+}
+
+fn main() {
+    let samples = [
+        "aGVsbG8gd29ybGQ=",
+        "aGVsbG8gd29ybG",
+        "p0GmbqFBpUCsyQ==",
+    ];
+
+    for sample in &samples {
+        match decode(sample) {
+            Ok(bytes) => println!("Decoded result: {:?}", bytes),
+            Err(err) => println!("{:?}", err),
+        }
+    }
+}
+{{< / highlight >}}
 
 當`base64::decode`無法正確解碼而返回`Err(base64::DecodeError)`時，['`?`'操作符](https://doc.rust-lang.org/edition-guide/rust-2018/error-handling-and-panics/the-question-mark-operator-for-easier-error-handling.html)會讓`do_something()`返回這個`Err(base64::DecodeError)`，但由於函數定義返回值是`Result<String, MyError>`，Rust會在編譯時尋找你定義的`impl base64::DecodeError for MyError`，然後以隠式轉換的方式應用上去，換句話説就是實現了自動封装，你不需要顯式地呼叫任何函數進行轉換。
 
@@ -65,20 +151,20 @@ Rust標準庫裡提供了[std::error::Error](https://doc.rust-lang.org/std/error
 
 如果有在使用async function，想必你的錯誤類型需要同時實作`Sync` + `Send`，那麼[`failure::Fail`](https://docs.rs/failure/0.1.1/failure/trait.Fail.html)可以幫助你大幅減少代碼量。它定義是：
 
-```rust
+{{< highlight rust "linenos=table" >}}
 pub trait Fail: Display + Debug + Send + Sync + 'static {
     //......
 }
-```
+{{< / highlight >}}
 
 而你就只需要在`enum`上`derive(Fail)`：
 
-```rust
+{{< highlight rust "linenos=table" >}}
 #[derive(Fail, Debug)]
 pub enum MyError {
     EncodeError,
     DecodeError,
 }
-```
+{{< / highlight >}}
 
 然後你的錯誤類型便滿足並發要求了。
