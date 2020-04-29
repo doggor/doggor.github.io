@@ -4,7 +4,7 @@
 <head>
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} // {{ .Site.Title }}{{ end }}</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo {{ .Hugo.Version }}" />
+    <meta name="generator" content="Hugo {{ hugo.Version }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="{{ .Site.Params.author }}" />
     <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else if .Summary }}{{ .Summary }}{{ else }}{{ .Description }}{{ end }}" />
