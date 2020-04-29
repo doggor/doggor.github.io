@@ -9,6 +9,10 @@
     }
 }
 
+.post-content {
+    clear: both;
+}
+
 .post-content pre {
     border-left: 0.2em solid $color-light-highlight;
     padding-left: 1em;
@@ -43,72 +47,61 @@
 
 #share-buttons {
     display: block;
-    float: right;
-    margin: 0 8px;
+    margin: 2rem 0;
 
     & > div {
         position: relative;
-        text-align: left;
         height: 36px;
-        width: 32px;
+        width: 84px;
         float: left;
+        margin-right: 8px;
         text-align: center;
-    }
-    & > div > svg {
-        height: 16px;
-        fill: #d5d5d5;
-        margin-top: 10px;
-    }
-    & > div:hover {
         cursor: pointer;
+
+        & > svg {
+            fill: #d5d5d5;
+        }
+
+        &.facebook {
+            background-color: #3b5998;
+        }
+        &.twitter {
+            background-color: #55acee;
+        }
+        &.linkedin {
+            background-color: #0077b5;
+        }
+        &.pinterest {
+            background-color: #cb2027;
+        }
+        &.mail {
+            background-color: #dd4b39;
+        }
+        &.instagram {
+            background-color: #c73b92;
+        }
+        &.facebook > svg {
+            height: 18px;
+            margin-top: 9px;
+        }
+        &.twitter > svg {
+            height: 20px;
+            margin-top: 8px;
+        }
+        &.linkedin > svg {
+            height: 19px;
+            margin-top: 7px;
+        }
+        &.pinterest > svg {
+            height: 20px;
+            margin-top: 9px;
+        }
+        &.mail > svg {
+            height: 14px;
+            margin-top: 11px;
+        }
     }
-    & > div.facebook:hover > svg {
-        fill: #3b5998;
-    }
-    & > div.twitter:hover > svg {
-        fill: #55acee;
-    }
-    & > div.linkedin:hover > svg {
-        fill: #0077b5;
-    }
-    & > div.pinterest:hover > svg {
-        fill: #cb2027;
-    }
-    & > div.gplus:hover > svg {
-        fill: #dd4b39;
-    }
-    & > div.mail:hover > svg {
-        fill: #7d7d7d;
-    }
-    & > div.instagram:hover > svg {
-        fill: #c73b92;
-    }
-    & > div.facebook > svg {
-        height: 18px;
-        margin-top: 9px;
-    }
-    & > div.twitter > svg {
-        height: 20px;
-        margin-top: 8px;
-    }
-    & > div.linkedin > svg {
-        height: 19px;
-        margin-top: 7px;
-    }
-    & > div.pinterest > svg {
-        height: 20px;
-        margin-top: 9px;
-    }
-    & > div.gplus > svg {
-        height: 17px;
-        margin-top: 9px;
-        position: relative;
-        left: 1px;
-    }
-    & > div.mail > svg {
-        height: 14px;
-        margin-top: 11px;
-    }
+
 }
 
 figure {

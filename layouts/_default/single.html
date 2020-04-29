@@ -3,7 +3,6 @@
     <header class="post-header">
       <div>
         <h1 class ="post-title">{{ .Title }}</h1>
-        {{ partial "share-buttons.html" . }}
       </div>
       <div class="post-meta">
         <div>
@@ -30,5 +29,6 @@
       {{ .Content }}
     </div>
   </article>
+  {{ partial "share-buttons.html" . }}
   <section class="disqus-area">{{ template "_internal/disqus.html" . }}</section>
 {{ end }}
