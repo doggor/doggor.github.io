@@ -20,6 +20,7 @@
         "deadline一路往後調整",
         "一堆爬蟲推高了流量",
         "錯手把DB刪光光",
+        "不眠不休用生命填坑",
     ];
     //get dom for printing
     var displayDom = d.getElementsByClassName("app-header-wanna-say")[0];
