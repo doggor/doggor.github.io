@@ -46,7 +46,7 @@
 }
 
 #share-buttons {
-    display: block;
+    display: inline-block;
     margin: 2rem 0;
 
     & > div {
@@ -54,7 +54,7 @@
         height: 36px;
         width: 84px;
         float: left;
-        margin-right: 8px;
+        margin: 8px 8px 0 0;
         text-align: center;
         cursor: pointer;
 
