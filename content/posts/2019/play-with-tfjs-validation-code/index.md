@@ -100,10 +100,4 @@ for (let char of "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 };
 {{< / highlight >}}
 
-程式碼就先寫到這裡，下面直接看看效果：
-<p class="codepen" data-height="512" data-theme-id="0" data-default-tab="js,result" data-user="doggor" data-slug-hash="YzKxYVg" data-preview="true" style="height: 512px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="hk-housing-authority-validation-code-patterns">
-  <span>See the Pen <a href="https://codepen.io/doggor/pen/YzKxYVg/">
-  hk-housing-authority-validation-code-patterns</a> by Andy Ching (<a href="https://codepen.io/doggor">@doggor</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+程式碼就先寫到這裡，直接看看效果：[https://codepen.io/doggor/pen/YzKxYVg/](https://codepen.io/doggor/pen/YzKxYVg/)
