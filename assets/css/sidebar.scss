@@ -26,6 +26,8 @@
 }
 
 .app-header-wanna-say {
+    display: none; //will be "block" if js enable
+
     &::after {
         content: "";
         display: inline-block;

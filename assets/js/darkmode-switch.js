@@ -22,6 +22,8 @@
     });
 
     //init
+    //show switch
+    d.getElementsByClassName("planet-switch")[0].style.display = "block";
     //switch to last mode from cookie
     if (typeof d.cookie === "string") {
         var match = d.cookie.match(/dgdarkmode=(\d)/);

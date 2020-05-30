@@ -1,5 +1,5 @@
 .planet-switch {
-    display: block;
+    display: none; //will be "block" if js enable
     $radius: 16px;
     $sun-color: #ffd600;
     $moon-color: #cfd8dc;

@@ -39,4 +39,6 @@
             }
         }, 120, position || 0);
     })();
+    //show dom
+    displayDom.style.display = "block";
 })(document);
