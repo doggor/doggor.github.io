@@ -10,11 +10,11 @@ tags: ["js", "react", "tfjs"]
 
 <!--more-->
 
-*如果想重溫驗證碼製作方法，[按此傳送門](/posts/2019/play-with-tfjs-validation-code)*
+*如果想重溫驗證碼製作方法，[按此傳送門]({{<ref "/posts/2019/play-with-tfjs-validation-code">}})*
 
-這邊我做了個[demo](https://doggor.github.io/tfjs-text-classification-demo/)放在Github，讓大家可以親自體驗使用tfjs做訓練，原碼可以在[這裡](https://github.com/doggor/tfjs-text-classification-demo)找到。下面我來説明一下是如何使用的。
+這邊我做了個{{<blanklink name="demo" href="https://doggor.github.io/tfjs-text-classification-demo/">}}放在Github，讓大家可以親自體驗使用tfjs做訓練，原碼可以在{{<blanklink name="這裡" href="https://github.com/doggor/tfjs-text-classification-demo">}}找到。下面我來説明一下是如何使用的。
 
-首先䦕個新分頁到我的Demo page: [https://doggor.github.io/tfjs-text-classification-demo/](https://doggor.github.io/tfjs-text-classification-demo/)，應該會看到一行操作欄：
+首先䦕個新分頁到我的Demo page: {{<blanklink href="https://doggor.github.io/tfjs-text-classification-demo/">}}，應該會看到一行操作欄：
 
 {{<figure src="/posts/2019/play-with-tfjs-classify-validation-code/01.png" link="/posts/2019/play-with-tfjs-classify-validation-code/01.png" target="_blank">}}
 
@@ -69,7 +69,7 @@ tags: ["js", "react", "tfjs"]
 
 {{<figure src="/posts/2019/play-with-tfjs-classify-validation-code/03.png" link="/posts/2019/play-with-tfjs-classify-validation-code/03.png" target="_blank">}}
 
-點選這個模型，頁面的右方會彈出有關模型的資訊，這是使用[tfjs-vis](https://storage.googleapis.com/tfjs-vis/mnist/dist/index.html)做的：
+點選這個模型，頁面的右方會彈出有關模型的資訊，這是使用{{<blanklink name="tfjs-vis" href="https://storage.googleapis.com/tfjs-vis/mnist/dist/index.html">}}做的：
 
 {{<figure src="/posts/2019/play-with-tfjs-classify-validation-code/04.png" link="/posts/2019/play-with-tfjs-classify-validation-code/04.png" target="_blank">}}
 

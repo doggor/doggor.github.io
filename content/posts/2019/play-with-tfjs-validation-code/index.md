@@ -10,7 +10,7 @@ tags: ["js", "canvas", "tfjs"]
 
 <!--more-->
 
-*這篇重點是重現驗證碼圙案，如果你是想了解如何使用tensorflow.js辨識字母，請到[下一篇文章](/posts/2019/play-with-tfjs-classify-validation-code)*
+*這篇重點是重現驗證碼圙案，如果你是想了解如何使用tensorflow.js辨識字母，請到[下一篇文章]({{<ref "/posts/2019/play-with-tfjs-classify-validation-code">}})*
 
 > *這裡純學術研究，內容上如有任何冒犯請見諒。*
 
@@ -100,4 +100,4 @@ for (let char of "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 };
 {{< / highlight >}}
 
-程式碼就先寫到這裡，直接看看效果：[https://codepen.io/doggor/pen/YzKxYVg/](https://codepen.io/doggor/pen/YzKxYVg/)
+程式碼就先寫到這裡，直接看看效果：{{<blanklink href="https://codepen.io/doggor/pen/YzKxYVg/">}}

@@ -10,17 +10,17 @@ Rust這款語言並不強調Object-Oriented特性，也沒有既定的錯誤處�
 
 <!--more-->
 
-對哦，沒看錯，是用[enumeration](https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html)！
+對哦，沒看錯，是用{{<blanklink name="enumeration" href="https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html">}}！
 
 讓我們先看看如果模仿其他OO語言`class extends Error`的方式用`struct`來`impl Error`是如何：
 
 #### 用struct實作標準Error Trait
 
-Rust標準庫裡提供了[std::error::Error](https://doc.rust-lang.org/std/error/trait.Error.html)，官方文檔裡可以找到例子教導我們如何在自己的`struct`上實作這個trait。
+Rust標準庫裡提供了{{<blanklink name="std::error::Error" href="https://doc.rust-lang.org/std/error/trait.Error.html">}}，官方文檔裡可以找到例子教導我們如何在自己的`struct`上實作這個trait。
 
 學習Rust時起初可能會這樣定義一個錯誤類型：
 
-[>> Try Online <<](https://bit.ly/2wLTIP1)
+{{<blanklink name=">> Try Online <<" href="https://bit.ly/2wLTIP1">}}
 {{< highlight rust "linenos=table" >}}
 use std::error::Error;
 use std::fmt;
@@ -44,7 +44,7 @@ fn main() {
 
 上面例子好像沒有太大問題，而當你的函數需要按情況返回不同的自定義錯誤時，大概會這樣做：
 
-[>> Try Online <<](https://bit.ly/2Uoeop4)
+{{<blanklink name=">> Try Online <<" href="https://bit.ly/2Uoeop4">}}
 {{< highlight rust "linenos=table" >}}
 use std::error::Error;
 use std::fmt;
@@ -100,7 +100,7 @@ fn main() {
 
 首先，為每個自定義錯誤類型編寫的代碼量很多；
 
-因為函数會返回不同錯誤，返回值需要聲明為`dyn Error`，而又因為trait無法得知實際值的size，所以要用[std::boxed::Box](https://doc.rust-lang.org/std/boxed/struct.Box.html)封装起來；
+因為函数會返回不同錯誤，返回值需要聲明為`dyn Error`，而又因為trait無法得知實際值的size，所以要用{{<blanklink name="std::boxed::Box" href="https://doc.rust-lang.org/std/boxed/struct.Box.html">}}封装起來；
 
 然後，你獲得一個`Box<dyn Error>`類型的錯誤，但它實際上到底是屬於哪個錯誤？Rust没有像`instanceof`這樣的關鍵字可以作出區分，所以"按照不同錯誤類型去作不同的處理"這件事變得很困難；
 
@@ -112,7 +112,7 @@ fn main() {
 
 為每一個錯誤類型定義`struct`和實作`Error` trait實在是廢時失事，来看看如果使用`enum`來寫會是甚麼樣子：
 
-[>> Try Online <<](https://bit.ly/2WOBKpD)
+{{<blanklink name=">> Try Online <<" href="https://bit.ly/2WOBKpD">}}
 {{< highlight rust "linenos=table" >}}
 use std::error::Error;
 use std::fmt;
@@ -168,7 +168,7 @@ fn main() {
 對於第三方庫的錯誤類型，無論是甚麽資料結構，我們都可以為其實作`From<T>`，以方便重新封装成自定義的Variant：
 
 (由於字數問题所以省略了`impl Error`和`impl fmt::Display`)
-[>> Try Online <<](https://bit.ly/2y9MuEG)
+{{<blanklink name=">> Try Online <<" href="https://bit.ly/2y9MuEG">}}
 {{< highlight rust "linenos=table" >}}
 use std::str::{from_utf8, Utf8Error};
 use base64::{DecodeError};
@@ -215,11 +215,11 @@ fn main() {
 }
 {{< / highlight >}}
 
-當`base64::decode`無法正確解碼而返回`Err(base64::DecodeError)`時，['`?`'操作符](https://doc.rust-lang.org/edition-guide/rust-2018/error-handling-and-panics/the-question-mark-operator-for-easier-error-handling.html)會讓`do_something()`返回這個`Err(base64::DecodeError)`，但由於函數定義返回值是`Result<String, MyError>`，Rust會在編譯時尋找你定義的`impl base64::DecodeError for MyError`，然後以隠式轉換的方式應用上去，換句話説就是實現了自動封装，你不需要顯式地呼叫任何函數進行轉換。
+當`base64::decode`無法正確解碼而返回`Err(base64::DecodeError)`時，{{<blanklink name="'`?`'操作符" href="https://doc.rust-lang.org/edition-guide/rust-2018/error-handling-and-panics/the-question-mark-operator-for-easier-error-handling.html">}}會讓`do_something()`返回這個`Err(base64::DecodeError)`，但由於函數定義返回值是`Result<String, MyError>`，Rust會在編譯時尋找你定義的`impl base64::DecodeError for MyError`，然後以隠式轉換的方式應用上去，換句話説就是實現了自動封装，你不需要顯式地呼叫任何函數進行轉換。
 
 #### 在並發模型中使用`failure::Fail`
 
-如果有在使用async function，想必你的錯誤類型需要同時實作`Sync` + `Send`，那麼[`failure::Fail`](https://docs.rs/failure/0.1.1/failure/trait.Fail.html)可以幫助你大幅減少代碼量。它定義是：
+如果有在使用async function，想必你的錯誤類型需要同時實作`Sync` + `Send`，那麼{{<blanklink name="`failure::Fail`" href="https://docs.rs/failure/0.1.1/failure/trait.Fail.html">}}可以幫助你大幅減少代碼量。它定義是：
 
 {{< highlight rust "linenos=table" >}}
 pub trait Fail: Display + Debug + Send + Sync + 'static {

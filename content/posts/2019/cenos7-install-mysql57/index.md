@@ -38,4 +38,4 @@ grep 'A temporary password' /var/log/mysqld.log |tail -1
 在對話中，先輸入上面得到的臨時root密碼，然後更新成你自己的root密碼。
 再來會詢問你要不要移除匿名賬號、遠端登入、測試用數據庫等等，一路按Yes就是了。
 
-另外，可以在這個參考裡找到更多如CentOS 6、Fedora 25-27的安裝姿勢: https://tecadmin.net/install-mysql-5-7-centos-rhel/
+另外，可以在這個參考裡找到更多如CentOS 6、Fedora 25-27的安裝姿勢: {{<blanklink href="https://tecadmin.net/install-mysql-5-7-centos-rhel/">}}

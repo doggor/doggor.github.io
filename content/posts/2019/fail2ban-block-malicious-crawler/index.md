@@ -15,7 +15,7 @@ Nginx的error.log裡面看到很多錯誤request, 不斷請求一些不存在的
 
 若果是簡單的web應用，直接在該應用的Nginx/Apache設定檔裡指定需要開放出來URL，其他沒有注明的都一律回傳404，比較好辦。但是啊，某些情況下，例如URL需要由web應用去自行處理(e.g. dynamic routes)、後台入口`/wp-admin.php`不能挷定IP等等，設定檔就無能為力了。以上情況，我們可以嘗試引入Fail2ban去解決。
 
-以下是節錄自[Fail2ban官方網頁的介紹](https://www.fail2ban.org/wiki/index.php/Main_Page)：
+以下是節錄自{{<blanklink name="Fail2ban官方網頁的介紹" href="https://www.fail2ban.org/wiki/index.php/Main_Page">}}：
 
 > Fail2ban scans log files (e.g. /var/log/apache/error_log) and bans IPs that show the malicious signs -- too many password failures, seeking for exploits, etc. Generally Fail2Ban is then used to update firewall rules to reject the IP addresses for a specified amount of time, although any arbitrary other action (e.g. sending an email) could also be configured. Out of the box Fail2Ban comes with filters for various services (apache, courier, ssh, etc).
 >
@@ -27,7 +27,7 @@ Fail2ban預設支援的程序非常多，參數亦不少，以下將介紹CentOS
 
 #### 1. Installation
 
-首先，確保已安裝[EPEL](https://fedoraproject.org/wiki/EPEL)：
+首先，確保已安裝{{<blanklink name="EPEL" href="https://fedoraproject.org/wiki/EPEL">}}：
 ```
 #RHEL/CentOS 7
 yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm

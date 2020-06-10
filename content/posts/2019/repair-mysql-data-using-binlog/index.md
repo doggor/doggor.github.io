@@ -10,11 +10,11 @@ tags: ["mysql", "binlog", "sql"]
 
 <!--more-->
 
-若想了解binlog的構造，美團有一篇不錯的技術文︰[https://tech.meituan.com/2017/11/17/mysql-flashback.html](https://tech.meituan.com/2017/11/17/mysql-flashback.html)
+若想了解binlog的構造，美團有一篇不錯的技術文︰{{<blanklink href="https://tech.meituan.com/2017/11/17/mysql-flashback.html">}}
 
 > Update 2020-04-22
 >
-> 看到另一種更高技能點的修復方法，是直接從MySQL進程手上找回數據：[https://mp.weixin.qq.com/s/CbHNnxq2Qx290SEfz1HjWQ](https://mp.weixin.qq.com/s/CbHNnxq2Qx290SEfz1HjWQ)
+> 看到另一種更高技能點的修復方法，是直接從MySQL進程手上找回數據：{{<blanklink href="https://mp.weixin.qq.com/s/CbHNnxq2Qx290SEfz1HjWQ">}}
 
 ### 相關文件路徑﹙CentOS 7，MySQL 5.7﹚︰
 
@@ -23,7 +23,7 @@ tags: ["mysql", "binlog", "sql"]
 
 ### 前設條件
 
-1. MySQL本身有啟用[binlog](https://dev.mysql.com/doc/refman/5.7/en/replication-howto-masterbaseconfig.html)，否則只能從備份還原；
+1. MySQL本身有啟用{{<blanklink name="binlog" href="https://dev.mysql.com/doc/refman/5.7/en/replication-howto-masterbaseconfig.html">}}，否則只能從備份還原；
 2. 手上持有最近的備份﹙假設是用`mysqldump`做備份﹚，並知道該備份的創建時間；
 3. binlog文件會因為過期或超出數量限制而被自動銷毀，所以要先確認現時最舊的binlog的創建時間，必須先於你手上的備份的創建時間，以確保沒有真空期。
 
@@ -33,7 +33,7 @@ tags: ["mysql", "binlog", "sql"]
 2. 找出最接近該備份時間的binlog。
    例如︰備份的創建時間是 2019-10-01 09:30，則找出一個binlog其創建時間最接近而又不大於2019-10-01 09:30。
    由這個binlog開始，以及往後的所有binlog都是即將要進行操作的對象。
-3. [`mysqlbinlog`](https://dev.mysql.com/doc/refman/5.7/en/mysqlbinlog.html)指令通常已跟隨MySQL一並安裝到主機，而[`awk`](https://en.wikipedia.org/wiki/AWK)指令若不可用請透過包管理器安裝。
+3. {{<blanklink name="`mysqlbinlog`" href="https://dev.mysql.com/doc/refman/5.7/en/mysqlbinlog.html">}}指令通常已跟隨MySQL一並安裝到主機，而{{<blanklink name="`awk`" href="https://en.wikipedia.org/wiki/AWK">}}指令若不可用請透過包管理器安裝。
 
 ### 提取binlog中的query
 
@@ -72,8 +72,8 @@ mysqlbinlog -v mysql-bin.001* | awk '/table_1/,/;/' > mysql-0089.buy.sql
 
 有時候你可能需要對備份或由`mysqlbinlog`輸出的大型.sql文件進行人工檢視或修改，若資訊量太大，可試用以下工具開啟檔案︰
 
-1. [EmEditor](https://www.emeditor.com/), up to 248 GB or 2.1 billion lines (30 日免費試用)
-2. [Large File Editor (liquid studio)](https://www.liquid-technologies.com/large-file-editor), In principle its over 9000 petabytes
+1. {{<blanklink name="EmEditor" href="https://www.emeditor.com/">}}, up to 248 GB or 2.1 billion lines (30 日免費試用)
+2. {{<blanklink name="Large File Editor (liquid studio)" href="https://www.liquid-technologies.com/large-file-editor">}}, In principle its over 9000 petabytes
 
 ### 重新執行 query 之前
 
@@ -86,7 +86,7 @@ mysqlbinlog -v mysql-bin.001* | awk '/table_1/,/;/' > mysql-0089.buy.sql
 
 ### 暫停索引和外鍵檢查
 
-如果query數量很多，可參考[下一篇](/posts/2019/stop-mysql-indexing-and-reference-checking)暫停索引和外鍵檢查。
+如果query數量很多，可參考[下一篇]({{<ref "/posts/2019/stop-mysql-indexing-and-reference-checking">}})暫停索引和外鍵檢查。
 
 ### 執行query
 
@@ -103,7 +103,7 @@ mysql -u root -p < mysql-0011.buy.sql
 若遇上類似情況，人手操作是不可避免的。故此須要從習慣改變︰
 
 1. 對所有數據庫檔案操作，盡可能避免使用`rm`指令
-2. 以[`trash-cli`](https://github.com/andreafrancia/trash-cli)取代`rm`
+2. 以{{<blanklink name="`trash-cli`" href="https://github.com/andreafrancia/trash-cli">}}取代`rm`
 3. 當數據庫主機容量不足時(或預計使用`trash-cli`所需的空間不足時)，先增加其儲存容量
 4. 重建數據庫前除了考慮數據本身佔用之容量，同時亦需要考慮其建構indexes時臨時佔用之容量﹙一般不大於數據本身﹚
-5. 執行需時較長的query時，可考慮使用[mosh](https://mosh.org/)、[tmux](https://github.com/tmux/tmux)以保持當前SSH session，避免因網絡問題或宕機等意外而導致執行失敗
+5. 執行需時較長的query時，可考慮使用{{<blanklink name="mosh" href="https://mosh.org/">}}、{{<blanklink name="tmux" href="https://github.com/tmux/tmux">}}以保持當前SSH session，避免因網絡問題或宕機等意外而導致執行失敗

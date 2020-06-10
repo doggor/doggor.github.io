@@ -12,7 +12,7 @@ puppeteer_dev_profile是透過puppeteer操作Headless Chrome時會在 /tmp 自�
 
 {{<figure src="/posts/2019/remove-puppeteer-dev-profiles/screenshot.png" link="posts/remove-puppeteer-dev-profiles/screenshot.png" target="_blank">}}
 
-Github上已有人提出[這個問題](https://github.com/puppeteer/puppeteer/issues/1791)，而其[解決方法](https://github.com/puppeteer/puppeteer/issues/1791#issuecomment-367715074)是程序在關閉headless chrome後接著移除相關文件夾。
+Github上已有人提出{{<blanklink name="這個問題" href="https://github.com/puppeteer/puppeteer/issues/1791">}}，而其{{<blanklink name="解決方法" href="https://github.com/puppeteer/puppeteer/issues/1791#issuecomment-367715074">}}是程序在關閉headless chrome後接著移除相關文件夾。
 
 辦法不錯，前提是完成任務後需要主動關閉chrome，而且在移除puppeteer_dev_profile之前要祈求程序不要崩潰。🙏
 

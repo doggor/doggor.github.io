@@ -21,7 +21,7 @@ tags: ["centos","ftp"]
     ```
 
     > - 建議為每位使用者創建一個FTP專用賬戶，並在`/etc/passwd`裡把所有FTP賬戶的shell改成`/usr/sbin/nologin`，以禁止SSH登錄。
-    > - 可以使用[useradd](https://linux.die.net/man/8/useradd)指令新增賬戶。
+    > - 可以使用{{<blanklink name="useradd" href="https://linux.die.net/man/8/useradd">}}指令新增賬戶。
 
 3. 編緝`/etc/vsftpd/vsftpd.conf`，修改成以下設定：
 

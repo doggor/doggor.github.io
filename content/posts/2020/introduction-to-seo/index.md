@@ -11,7 +11,7 @@ tags: ["seo", "marketing"]
 <!--more-->
 
 早些時候在Udemy上觀看了這個總計1小時的SEO課程：
-[https://www.udemy.com/course/seo-strategies-and-techniques/](https://www.udemy.com/course/seo-strategies-and-techniques/)
+{{<blanklink href="https://www.udemy.com/course/seo-strategies-and-techniques/">}}
 
 雖然這個不是甚麼知名推薦課程，但因為~~小弟意外撿獲了優惠碼令課程變成免費，而且~~過往沒有深入研究SEO，想想也該補足一下這方面的知識了🤔
 
@@ -44,7 +44,7 @@ tags: ["seo", "marketing"]
    二是來自搜尋引擎的流量，我們須要：
 
    1. 製作相關的內容
-   2. 建立反向連結（[Backlink](https://en.wikipedia.org/wiki/Backlink)）
+   2. 建立反向連結（{{<blanklink name="Backlink" href="https://en.wikipedia.org/wiki/Backlink">}}）
 
    另外我們還可以利用其他方法帶來流量，例如：
 
@@ -90,7 +90,7 @@ tags: ["seo", "marketing"]
 
     2.  基於 "關鍵字排名難度"（keyword difficulty）去選擇關鍵字
 
-        [關鍵字排名難度](https://ahrefs.com/zh/keyword-difficulty)分數愈低，代表愈容易出現在搜尋結果的第一頁。
+        {{<blanklink name="關鍵字排名難度" href="https://ahrefs.com/zh/keyword-difficulty">}}分數愈低，代表愈容易出現在搜尋結果的第一頁。
         但是，較高的分數不代表較少的網頁流量，兩者並沒有直接關係。
         因為網頁並非單靠一個關鍵字去進行排名的。
 
@@ -100,7 +100,7 @@ tags: ["seo", "marketing"]
 
         Google能夠透過 "潛在語意索引"（Latent Semantic Indexing）找出與某一關鍵字意義相近的字詞，所以我們只須要行文暢順，緊貼大眾偏好，內容出色就可以了。
 
-        不斷重複某一字詞可能會令文章乏味，我們可以在[https://lsigraph.com/](https://lsigraph.com/)上查找能夠替代該關鍵字的詞語(LSI keywords)。
+        不斷重複某一字詞可能會令文章乏味，我們可以在{{<blanklink href="https://lsigraph.com/">}}上查找能夠替代該關鍵字的詞語(LSI keywords)。
 
 ### 5. 影響SEO排名的因素
 
@@ -110,11 +110,11 @@ tags: ["seo", "marketing"]
 
 2.  內容愈長愈好
 
-    要提高相關性，網頁篇幅要夠長，內容要夠深入，多使用LSI關鍵字，利用[https://cloud.google.com/natural-language](https://cloud.google.com/natural-language)確保Google的自然語言處理能力可以從內文辨識到我們的關鍵字。
+    要提高相關性，網頁篇幅要夠長，內容要夠深入，多使用LSI關鍵字，利用{{<blanklink href="https://cloud.google.com/natural-language">}}確保Google的自然語言處理能力可以從內文辨識到我們的關鍵字。
 
 3.  回答與關鍵字相關的問題
 
-    其中一個驅使人們查詢某一關鍵字的原因是，他們對此抱有相關的問題。透過[https://answerthepublic.com/](https://answerthepublic.com/)可以把這些問題找出來，然後在我們的網站內嘗試按以下方式編排內容：
+    其中一個驅使人們查詢某一關鍵字的原因是，他們對此抱有相關的問題。透過{{<blanklink href="https://answerthepublic.com/">}}可以把這些問題找出來，然後在我們的網站內嘗試按以下方式編排內容：
 
     - 把問題作為標題，放在 `<h1>`或 `<h2>`
     - 把關鍵字放進問題中
@@ -174,11 +174,11 @@ tags: ["seo", "marketing"]
 
     1.  透過Google Search Console查找我們已經使用於排名的關鍵字
 
-    2.  在[https://ahrefs.com/keywords-explorer](https://ahrefs.com/keywords-explorer)查找競爭對手使用於排名的關鍵字
+    2.  在{{<blanklink href="https://ahrefs.com/keywords-explorer">}}查找競爭對手使用於排名的關鍵字
 
     3.  關鍵字研究工具
-        - [Google Keyword Planner](https://ads.google.com/home/tools/keyword-planner/)
-        - [NEILPATEL](https://app.neilpatel.com/)
+        - {{<blanklink name="Google Keyword Planner" href="https://ads.google.com/home/tools/keyword-planner/">}}
+        - {{<blanklink name="NEILPATEL" href="https://app.neilpatel.com/">}}
 
 2.  篩選關鍵字
 
@@ -188,7 +188,7 @@ tags: ["seo", "marketing"]
 
         即大眾搜索該關鍵字的次數，每月搜索量達100次以上的都可以考慮。
         要留意該關踺字查詢主要來自哪些國家，是不是屬於我們的目標市場。
-        另外要避免使用季節性關鍵字，即只會在特定時段出現高搜索量，但平時基本上沒有太多人會使用的關鍵字（[Google趨勢](https://trends.google.com/)可以幫助我們找出這些關鍵字）。
+        另外要避免使用季節性關鍵字，即只會在特定時段出現高搜索量，但平時基本上沒有太多人會使用的關鍵字（{{<blanklink name="Google趨勢" href="https://trends.google.com/">}}可以幫助我們找出這些關鍵字）。
 
     2.  流量
 
@@ -218,7 +218,7 @@ tags: ["seo", "marketing"]
 
     - 電子郵件訂閲
     - 社交媒體上發文
-    - 網絡應用推送通知（[Web Push Notification](https://developers.google.com/web/fundamentals/codelabs/push-notifications)）
+    - 網絡應用推送通知（{{<blanklink name="Web Push Notification" href="https://developers.google.com/web/fundamentals/codelabs/push-notifications">}}）
 
 2.  活躍於相關的網上社區、論壇
 
@@ -264,6 +264,6 @@ tags: ["seo", "marketing"]
 
 > 看影片寫筆記已經夠累，還花了頗長時間去翻譯成中文，為了行文通順所以用了自己的方式去演繹某些詞滙和句子，某些位置又再自己~~FF~~補充了一下，章節沒有跟課程對齊的，不便之處敬請原諒。👷‍♂️
 
-最後，也可以看看這個網頁，內容跟課程説的很相似：[https://kknews.cc/zh-hk/news/9gl2xlq.html](https://kknews.cc/zh-hk/news/9gl2xlq.html)
+最後，也可以看看這個網頁，內容跟課程説的很相似：{{<blanklink href="https://kknews.cc/zh-hk/news/9gl2xlq.html">}}
 
-> 感謝[Yamada](https://aoiyamada.github.io/)提出修正。
+> 感謝{{<blanklink name="Yamada" href="https://aoiyamada.github.io/">}}提出修正。
