@@ -80,6 +80,10 @@ tags: ["tool"]
 
     免費VPN工具可以穿透NAT，讓主機連接到遠端內網，可選參數多，設定稍為複雜，穏定。
 
+4.  [ngrok](https://ngrok.com/)
+
+    可以生成一個public domain，以HTTP或HTTPS連接到本機指定port，測試自定義webhook非常方便，推薦。
+
 ### 數據庫管理
 
 1.  [MySQLWorkbench](https://www.mysql.com/products/workbench/)
