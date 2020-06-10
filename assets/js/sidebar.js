@@ -1,5 +1,3 @@
-"use strict";
-
 (function(d) {
     var maxims = [
         "我好像搞砸了甚麼",
@@ -23,7 +21,7 @@
         "不眠不休用生命填坑",
     ];
     //get dom for printing
-    var displayDom = d.getElementsByClassName("app-header-wanna-say")[0];
+    var displayDom = eleByClass("app-header-wanna-say");
     //get a maxim
     var candidate = maxims[Math.floor(Math.random() * maxims.length)];
     //print maxim

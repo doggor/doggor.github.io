@@ -1,19 +1,9 @@
-"use strict";
-
 (function(d, w) {
-    /**common tools */
-    function eleByClass(className) { return d.getElementsByClassName(className)[0] }
-    function hasClass(ele, className) { return ele.className.indexOf(className) > -1; }
-    function addClass(ele, className) { ele.className += " " + className; }
-    function delClass(ele, className) { ele.className = ele.className.replace(className, "").trim(); }
-
     /** menu btn action */
     var menuBtn = eleByClass("app-topbar-menu-btn");
     var sidebar = eleByClass("app-header");
     var appContainer = eleByClass("app-container");
-    function toggleSidebar() {
-        hasClass(sidebar, "show") ? delClass(sidebar, "show") : addClass(sidebar, "show");
-    };
+
     menuBtn.addEventListener("click", function() {
         hasClass(sidebar, "show") ? delClass(sidebar, "show") : addClass(sidebar, "show");
     });

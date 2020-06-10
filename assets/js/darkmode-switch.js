@@ -1,17 +1,15 @@
-"use strict";
-
 (function(w, d) {
     var checkbox = d.getElementById("darkmode-switch-checkbox");
 
     function toLight() {
-        d.body.className = d.body.className.replace("darkmode--activated", "").trim();
+        delClass(d.body, "darkmode--activated");
 
         //set cookie
         d.cookie = "dgdarkmode=0;expires=" + (new Date(Date.now() + (30 * 24 * 60 * 60 * 1000))).toUTCString() + ";path=/";
     }
 
     function toDark() {
-        d.body.className = (d.body.className + " darkmode--activated").trim();
+        addClass(d.body, "darkmode--activated");
 
         //set cookie
         d.cookie = "dgdarkmode=1;expires=" + (new Date(Date.now() + (30 * 24 * 60 * 60 * 1000))).toUTCString() + ";path=/";
@@ -23,7 +21,7 @@
 
     //init
     //show switch
-    d.getElementsByClassName("planet-switch")[0].style.display = "block";
+    eleByClass("planet-switch").style.display = "block";
     //switch to last mode from cookie
     if (typeof d.cookie === "string") {
         var match = d.cookie.match(/dgdarkmode=(\d)/);

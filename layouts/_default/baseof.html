@@ -26,25 +26,24 @@
     <link rel="stylesheet" href="{{ $mainStyle.Permalink }}" />
     {{ $mobileStyle := resources.Get "css/mobile.scss" | resources.ExecuteAsTemplate "css/mobile.scss" . | toCSS | minify | fingerprint "md5" -}}
     <link rel="stylesheet" media="screen and (max-width: 939px)" href="{{ $mobileStyle.Permalink }}" />
-    {{ $cookies := resources.Get "js/cookies-consent.js" | minify | fingerprint "md5" }}
-    <script src="{{ $cookies.Permalink }}" defer></script>
-    {{ $topbarActions := resources.Get "js/topbar-actions.js" | minify | fingerprint "md5" }}
-    <script src="{{ $topbarActions.Permalink }}" defer></script>
-    {{ $serviceworker := resources.Get "service-worker.js" | minify }}
-    <!-- worker to load: {{ $serviceworker.Permalink }} -->
-    {{ $serviceworkerloader := resources.Get "js/service-worker-loader.js" | minify }}
-    <script src="{{ $serviceworkerloader.Permalink }}" defer></script>
-    <!-- darkmode -->
-    {{ $darkmodeScript := resources.Get "js/darkmode-switch.js" | minify }}
-    <script src="{{ $darkmodeScript.Permalink }}" async></script>
-    <!-- sidebar -->
-    {{ $sidebarScript := resources.Get "js/sidebar.js" | minify }}
-    <script src="{{ $sidebarScript.Permalink }}" defer></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+    <!-- Google Analytics -->
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://www.google-analytics.com">
-    {{ $gtag := resources.Get "js/gtag.js" | minify }}
-    <script src="{{ $gtag.Permalink }}" defer></script>
+
+    <!-- prepare service-worker.min.js to be loaded by $serviceworkerloader -->
+    {{ $serviceworker := resources.Get "service-worker.js" | minify }}
+
+    {{ $common := resources.Get "js/common.js" }}
+    <!-- worker to load: {{ $serviceworker.Permalink }} -->
+    {{ $serviceworkerloader := resources.Get "js/service-worker-loader.js" }}
+    {{ $darkmode := resources.Get "js/darkmode-switch.js"}}
+    {{ $sidebar := resources.Get "js/sidebar.js" }}
+    {{ $topbar := resources.Get "js/topbar-actions.js" }}
+    {{ $gtag := resources.Get "js/gtag.js" }}
+    {{ $cookies := resources.Get "js/cookies-consent.js" }}
+    {{ $js := slice $common $serviceworkerloader $darkmode $sidebar $topbar $gtag $cookies | resources.Concat "js/bundle.js" | minify | fingerprint "md5" }}
+    <script src="{{ $js.Permalink }}" async></script>
 </head>
 
 <body class="darkmode--activated">
