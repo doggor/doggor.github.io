@@ -47,7 +47,7 @@
 
 #share-buttons {
     display: inline-block;
-    margin: 2rem 0;
+    margin: 2rem auto;
 
     & > div {
         position: relative;
@@ -59,7 +59,7 @@
         cursor: pointer;
 
         & > svg {
-            fill: #d5d5d5;
+            fill: #fff;
         }
 
         &.facebook {

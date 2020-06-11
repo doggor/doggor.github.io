@@ -22,27 +22,38 @@
     <meta property="og:tags" content="{{ . }}">
     {{ end }}
     <base href="{{ .Site.BaseURL }}" />
-    {{ $mainStyle := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | toCSS | minify | fingerprint "md5" -}}
-    <link rel="stylesheet" href="{{ $mainStyle.Permalink }}" />
-    {{ $mobileStyle := resources.Get "css/mobile.scss" | resources.ExecuteAsTemplate "css/mobile.scss" . | toCSS | minify | fingerprint "md5" -}}
-    <link rel="stylesheet" media="screen and (max-width: 939px)" href="{{ $mobileStyle.Permalink }}" />
 
-    <!-- Google Analytics -->
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://www.google-analytics.com">
+    <!-- styles -->
+    <style>
+        /* minimal style applied before the css files loaded */
+        body { background-color: #16191d; color: #16191d; }
+        a { color: #16191d; }
+        input, img { display: none; }
+    </style>
+    {{ $mainStyle := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | toCSS | minify | fingerprint "md5" }}
+    <link rel="preload" as="style" href="{{ $mainStyle.Permalink }}" onload="this.rel='stylesheet'" />
+    <noscript>
+        <link rel="stylesheet" href="{{ $mainStyle.Permalink }}" />
+    </noscript>
+    {{ $mobileStyle := resources.Get "css/mobile.scss" | resources.ExecuteAsTemplate "css/mobile.scss" . | toCSS | minify | fingerprint "md5" }}
+    <link rel="preload" as="style" media="screen and (max-width: 939px)" href="{{ $mobileStyle.Permalink }}" onload="this.rel='stylesheet'" />
+    <noscript>
+        <link rel="stylesheet" media="screen and (max-width: 939px)" href="{{ $mobileStyle.Permalink }}" />
+    </noscript>
 
     <!-- prepare service-worker.min.js to be loaded by $serviceworkerloader -->
     {{ $serviceworker := resources.Get "service-worker.js" | minify }}
 
+    <!-- scripts -->
     {{ $common := resources.Get "js/common.js" }}
-    <!-- worker to load: {{ $serviceworker.Permalink }} -->
     {{ $serviceworkerloader := resources.Get "js/service-worker-loader.js" }}
+    {{ $cssrelpreload := resources.Get "js/cssrelpreload.js" }}
     {{ $darkmode := resources.Get "js/darkmode-switch.js"}}
     {{ $sidebar := resources.Get "js/sidebar.js" }}
     {{ $topbar := resources.Get "js/topbar-actions.js" }}
     {{ $gtag := resources.Get "js/gtag.js" }}
     {{ $cookies := resources.Get "js/cookies-consent.js" }}
-    {{ $js := slice $common $serviceworkerloader $darkmode $sidebar $topbar $gtag $cookies | resources.Concat "js/bundle.js" | minify | fingerprint "md5" }}
+    {{ $js := slice $common $serviceworkerloader $cssrelpreload $darkmode $sidebar $topbar $gtag $cookies | resources.Concat "js/bundle.js" | minify | fingerprint "md5" }}
     <script src="{{ $js.Permalink }}" async></script>
 </head>
 

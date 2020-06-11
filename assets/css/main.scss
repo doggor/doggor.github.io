@@ -30,6 +30,11 @@ body {
         background-color: $color-dark-bg;
         color: $color-dark-text;
     }
+
+    //reset
+    input, img {
+        display: initial;
+    }
 }
 
 h1,
