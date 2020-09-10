@@ -9,7 +9,7 @@ disqusShortname = "doggor-coding-notebook"
 
 [params]
   author = "Doggor"
-  description = "曾經有一個碼農分享了他遇過的事"
+  description = "一隻IT🐶的踩坑筆記"
   [[params.social]]
     name = "github"
     url = "https://github.com/doggor"
