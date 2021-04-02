@@ -2,3 +2,6 @@
 	path = public
 	url = git@github.com:doggor/doggor.github.io.git
 	branch = main
+[submodule "themes/m10c"]
+	path = themes/m10c
+	url = https://github.com/vaga/hugo-theme-m10c.git
