@@ -1,20 +1,21 @@
 .planet-switch {
+    --radius: 16px;
+    --sun-color: #ffd600;
+    --moon-color: #849ba5;
+    --switch-duration: 0.4s;
+
     display: none; //will be "block" if js enable
-    $radius: 16px;
-    $sun-color: #ffd600;
-    $moon-color: #cfd8dc;
-    $switch-duration: 0.4s;
 
     position: relative;
-    width: $radius * 4;
-    height: $radius * 2;
-    border-radius: $radius;
+    width: calc(var(--radius) * 4);
+    height: calc(var(--radius) * 2);
+    border-radius: var(--radius);
 
     //positioning
-    margin: $radius * 2 auto;
+    margin: calc(var(--radius) * 2) auto;
 
-    @at-root .darkmode-ready & {
-        transition: background-color $switch-duration;
+    @include at-dark {
+        transition: background-color var(--switch-duration);
     }
 
     background-color: #64b5f6;
@@ -31,37 +32,39 @@
 
     %planet-shape {
         position: absolute;
-        width: $radius * 2;
-        height: $radius * 2;
+        width: calc(var(--radius) * 2);
+        height: calc(var(--radius) * 2);
     }
 
     .planet {
         @extend %planet-shape;
 
         @at-root .darkmode-ready & {
-            transition: transform $switch-duration;
+            transition: transform var(--switch-duration);
         }
 
         //moon position
         @include at-dark {
-            transform: translateX($radius * 2);
+            transform: translateX(calc(var(--radius) * 2));
         }
 
         .core {
             @extend %planet-shape;
             border-radius: 50%;
-            transition: background-color $switch-duration;
+            transition: background-color var(--switch-duration);
+            filter: brightness(135%);
 
             //sun
-            background-color: lighten($sun-color, 35%);
+            background-color: var(--sun-color);
+
             //moon
             @include at-dark {
-                background-color: $moon-color;
-                box-shadow: 0 0 $radius lighten($moon-color, 50%);
+                background-color: var(--moon-color);
+                box-shadow: 0 0 var(--radius) var(--moon-color);
                 animation: moon-shadowing 3s ease infinite;
                 @keyframes moon-shadowing {
                     50% {
-                        box-shadow: 0 0 $radius * 3/4 $moon-color;
+                        box-shadow: 0 0 calc(var(--radius) * 3 / 4) var(--moon-color);
                     }
                 }
             }
@@ -77,7 +80,7 @@
                 }
             }
 
-            transition: opacity $switch-duration;
+            transition: opacity var(--switch-duration);
 
             //moon
             @include at-dark {
@@ -86,7 +89,7 @@
 
             & > .ray {
                 @extend %planet-shape;
-                background-color: $sun-color;
+                background-color: var(--sun-color);
                 &:nth-child(2) {
                     transform: rotate(30deg);
                 }
@@ -99,7 +102,7 @@
         .hole {
             position: absolute;
             border-radius: 50%;
-            transition: opacity $switch-duration;
+            transition: opacity var(--switch-duration);
 
             //sun
             opacity: 0;
@@ -113,18 +116,20 @@
             & {
                 top: 15%;
                 left: 10%;
-                width: $radius * 4 / 5;
-                height: $radius;
-                background-color: darken($moon-color, 6%);
+                width: calc(var(--radius) * 4 / 5);
+                height: var(--radius);
+                background-color: var(--moon-color);
+                filter: brightness(94%);
                 transform: rotate(30deg);
             }
 
             & ~ .hole {
                 top: 30%;
                 left: 60%;
-                width: $radius / 3;
-                height: $radius / 3;
-                background-color: darken($moon-color, 10%);
+                width: calc(var(--radius) / 3);
+                height: calc(var(--radius) / 3);
+                background-color: var(--moon-color);
+                filter: brightness(90%);
             }
         }
     }

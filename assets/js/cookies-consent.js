@@ -1,12 +1,14 @@
 (function(w, d) {
+    "use strict";
+
     //simply return if popup already dismissed
     if (d.cookie.indexOf("cookieconsent_status=dismiss") > -1) {
         return;
     }
 
-    var head = d.getElementsByTagName("head")[0];
+    const head = d.getElementsByTagName("head")[0];
+    const link = d.createElement("link");
 
-    var link = d.createElement("link");
     link.rel = "stylesheet";
     link.type = "text/css";
     link.href = "https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css";

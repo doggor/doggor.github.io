@@ -1,18 +1,34 @@
-$color-fixed-code-bg: #242930;
-
-$color-light-bg: #fff;
-$color-light-text: #000;
-$color-light-highlight: #1565c0;
-$color-light-highlight-hover: #1565c0;
-
-$color-dark-bg: #16191d;
-$color-dark-text: #afbac4;
-$color-dark-highlight: #ffd600;
-$color-dark-highlight-hover: #ffd600;
-
 @mixin at-dark {
     @at-root body.darkmode--activated & {
         @content;
+    }
+}
+
+:root {
+    --color-fixed-code-bg: #242930;
+    --color-light-bg: #fff;
+    --color-light-text: #000;
+    --color-light-highlight: #1565c0;
+    --color-light-highlight-hover: #1565c0;
+    --color-dark-bg: #16191d;
+    --color-dark-text: #afbac4;
+    --color-dark-highlight: #ffd600;
+    --color-dark-highlight-hover: #ffd600;
+}
+
+body {
+    //light mode
+    --color-bg: var(--color-light-bg);
+    --color-text: var(--color-light-text);
+    --color-highlight: var(--color-light-highlight);
+    --color-highlight-hover: var(--color-light-highlight-hover);
+
+    //dark mode
+    &.darkmode--activated {
+    --color-bg: var(--color-dark-bg);
+    --color-text: var(--color-dark-text);
+    --color-highlight: var(--color-dark-highlight);
+    --color-highlight-hover: var(--color-dark-highlight-hover);
     }
 }
 

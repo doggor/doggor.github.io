@@ -1,5 +1,3 @@
-@import "./colors";
-
 .posts-list {
     padding: 0;
 }
@@ -23,11 +21,7 @@
 }
 
 .posts-list-item-description {
-    color: $color-light-text;
-
-    @include at-dark {
-        color: $color-dark-text;
-    }
+    color: var(--color-text);
 
     p {
         margin-bottom: 0;
@@ -55,13 +49,8 @@ nav.pagination-conatiner {
                 text-align: center;
             }
             &.active > a.page-link {
-                background-color: $color-light-highlight;
-                color: $color-light-bg;
-
-                @include at-dark {
-                    background-color: $color-dark-highlight;
-                    color: $color-dark-bg;
-                }
+                background-color: var(--color-highlight);
+                color: var(--color-bg);
             }
         }
     }

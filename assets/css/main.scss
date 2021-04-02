@@ -18,18 +18,8 @@ html {
 body {
     margin: 0;
     font-family: sans-serif;
-    background: $color-light-bg;
-    color: $color-light-text;
-    transition-property: background-color, color;
-
-    &.darkmode-ready {
-        transition: all 0.4s;
-    }
-
-    &.darkmode--activated {
-        background-color: $color-dark-bg;
-        color: $color-dark-text;
-    }
+    background: var(--color-bg);
+    color: var(--color-text);
 
     //reset
     input, img {
@@ -44,32 +34,20 @@ h4,
 h5,
 h6 {
     margin: 3em 0 1em;
-    color: $color-light-highlight;
-
-    @include at-dark {
-        color: $color-dark-highlight;
-    }
+    color: var(--color-highlight);
 }
 
 a {
     text-decoration: none;
 
-    color: $color-light-highlight;
+    color: var(--color-highlight);
 
-    @at-root body.darkmode-ready & {
+    @include at-dark {
         transition: color 0.4s;
     }
 
     &:hover {
-        color: $color-light-highlight-hover;
-    }
-
-    @include at-dark {
-        color: $color-dark-highlight;
-
-        &:hover {
-            color: $color-dark-highlight-hover;
-        }
+        color: var(--color-highlight-hover);
     }
 }
 
@@ -81,11 +59,7 @@ blockquote {
     margin: 1em 0;
     padding: 0.5em;
     font-style: italic;
-    border-left: solid 0.3em $color-light-highlight;
-
-    @include at-dark {
-        border-left-color: $color-dark-highlight;
-    }
+    border-left: solid 0.3em var(--color-highlight);
 }
 
 blockquote > * {

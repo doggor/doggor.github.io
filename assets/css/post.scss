@@ -1,12 +1,6 @@
-@import "./colors";
-
 .post-title {
     display: inline;
-    color: $color-light-highlight;
-
-    @include at-dark {
-        color: $color-dark-highlight;
-    }
+    color: var(--color-highlight);
 }
 
 .post-content {
@@ -14,15 +8,11 @@
 }
 
 .post-content pre {
-    border-left: 0.2em solid $color-light-highlight;
+    border-left: 0.2em solid var(--color-highlight);
     padding-left: 1em;
     padding: 0.5em;
-    background-color: $color-fixed-code-bg;
-    color: $color-dark-text;
-
-    @include at-dark {
-        border-left-color: $color-dark-highlight;
-    }
+    background-color: var(--color-fixed-code-bg);
+    color: var(--color-dark-text);
 }
 
 .post-meta {

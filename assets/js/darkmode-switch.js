@@ -1,5 +1,7 @@
 (function(w, d) {
-    var checkbox = d.getElementById("darkmode-switch-checkbox");
+    "use strict";
+
+    const checkbox = d.getElementById("darkmode-switch-checkbox");
 
     function toLight() {
         delClass(d.body, "darkmode--activated");
@@ -24,7 +26,7 @@
     eleByClass("planet-switch").style.display = "block";
     //switch to last mode from cookie
     if (typeof d.cookie === "string") {
-        var match = d.cookie.match(/dgdarkmode=(\d)/);
+        const match = d.cookie.match(/dgdarkmode=(\d)/);
         if (match && match[1] == 0) {
             checkbox.checked = false;
             toLight();
@@ -32,7 +34,7 @@
     }
     //auto switch to browser preferred mode
     else if (typeof w.matchMedia === "function") {
-        var mql = w.matchMedia("(prefers-color-scheme: light)");
+        const mql = w.matchMedia("(prefers-color-scheme: light)");
         if (mql.matches) {
             checkbox.checked = false;
             toLight();

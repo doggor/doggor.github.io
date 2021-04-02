@@ -1,2 +1,7 @@
-$sidebar-width: 20rem;
-$topbar-height: 48px;
+:root {
+    --sidebar-width: 20rem;
+    --topbar-height: 48px;
+    --topbar-padding: 12px;
+    --topbar-line-width: calc(var(--topbar-height) - (2 * var(--topbar-padding)));
+    --topbar-line-height: calc(var(--topbar-line-width) / 7);
+}

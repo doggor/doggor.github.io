@@ -1,16 +1,40 @@
-@import "./variables";
-@import "./colors";
+:root {
+    --sidebar-width: 100%;
+}
 
-.app-header {
-    padding: 2.5em 0.8rem;
-    transform: translateX(-$sidebar-width);
-    &.show {
-        transform: none;
+.mobile-back-btn {
+    --size: var(--topbar-height);
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: var(--size);
+    height: var(--size);
+    text-align: center;
+    opacity: 0;
+    transition: opacity ease 0.4s;
+
+    &::before {
+        content: "<";
+        display: inline;
+        line-height: var(--size);
+        font-size: calc(var(--size) * 2 / 3);
+        font-weight: bold;
+        color: var(--color-highlight);
+    }
+
+    @at-root .app-header.show & {
+        opacity: 1;
     }
 }
 
-.app-header.show + .app-container {
-    transform: translateX($sidebar-width);
+.app-header {
+    padding: 2.5em 0.8rem;
+    transform: translateX(calc(var(--sidebar-width) * -1));
+
+    &.show {
+        transform: translateX(0);
+    }
 }
 
 .app-topbar {
@@ -19,22 +43,55 @@
     top: 0;
     left: 0;
     right: 0;
-    height: $topbar-height;
+    height: var(--topbar-height);
     z-index: 99;
-    background-color: $color-light-bg;
+    background-color: var(--color-bg);
+    transition: background-color 0.4s, transform ease 0.4s;
 
-    @at-root body.darkmode-ready & {
-        transition: all 0.4s;
+    &.hide {
+        transform: translateY(calc(var(--topbar-height) * -1));
     }
 
-    @include at-dark {
-        background-color: $color-dark-bg;
+    @at-root .app-header.show ~ & {
+        transform: translateX(var(--sidebar-width));
+    }
+
+    .app-topbar-menu-btn {
+        --size: var(--topbar-height);
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: var(--size);
+        height: var(--size);
+        text-align: center;
+        transition: opacity ease 0.4s;
+
+        &::before {
+            content: "=";
+            display: inline;
+            line-height: var(--size);
+            font-size: calc(var(--size) * 2 / 3);
+            font-weight: bold;
+            color: var(--color-highlight);
+        }
+
+        @at-root .app-header.show & {
+            opacity: 0;
+        }
+    }
+
+    h3 {
+        display: block;
+        margin: 0 0.5em;
+        float: right;
+        line-height: var(--topbar-height);
     }
 }
 
 .app-container {
     margin-left: 0;
-    padding: $topbar-height 0.8rem;
+    padding: var(--topbar-height) 0.8rem;
 }
 
 .posts-list-item-image {
