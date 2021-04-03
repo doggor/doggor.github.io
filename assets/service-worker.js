@@ -1,4 +1,4 @@
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/6.1.1/workbox-sw.js");
 
 if (workbox) {
     workbox.routing.registerRoute(
@@ -26,7 +26,7 @@ if (workbox) {
             // Use a custom cache name.
             cacheName: 'image-cache',
             plugins: [
-                new workbox.expiration.Plugin({
+                new workbox.expiration.ExpirationPlugin({
                     // Cache only 20 images.
                     maxEntries: 20,
                     // Cache for a maximum of a week.
