@@ -43,6 +43,7 @@
 
     <!-- prepare service-worker.min.js to be loaded by $serviceworkerloader -->
     {{ $serviceworker := resources.Get "service-worker.js" | minify }}
+    <!-- {{ $serviceworker.Permalink }} -->
 
     <!-- scripts -->
     {{ $common := resources.Get "js/common.js" }}
