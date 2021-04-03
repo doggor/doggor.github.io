@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="zh-TW">
+
+<head>
+    <title>InfluxDB使用問題與優化紀錄 // 碼農生活</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Doggor" />
+    <meta name="description" content="一個運轉一年多的 NodeJS 專案，每分鐘向 InfluxDB 寫入 40~50 個 point，某天發現不時出現ETIMEOUT以及No host available連接問題，導致部分資料無法儲存。" />
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="碼農生活">
+    <link rel="apple-touch-icon" href="/images/icons/icon-152x152.png">
+    <meta name="theme-color" content="#16191d" />
+    
+    
+    <meta property="og:image" content="https://doggor.github.io//posts/optimize-influx-performance/thumbnail.jpg">
+    
+    
+    <meta property="og:tags" content="influx">
+    
+    <meta property="og:tags" content="centos">
+    
+    <meta property="og:tags" content="docker">
+    
+    <base href="https://doggor.github.io/" />
+    <link rel="stylesheet" href="https://doggor.github.io/css/main.min.16abed0e30734b2607d642a17b5279ea.css" />
+    <link rel="stylesheet" media="screen and (max-width: 939px)" href="https://doggor.github.io/css/mobile.min.be810d81064de9fff3dbf244d2814afb.css" />
+    
+    <script src="https://doggor.github.io/js/cookies-consent.min.3c6f7f73c9853ee1e5d637f02f1abaf6.js" defer></script>
+    
+    <script src="https://doggor.github.io/js/topbar-actions.min.9e50b64f91b4beeaa3d1458c8b469ab2.js" defer></script>
+    
+    
+    
+    <script src="https://doggor.github.io/js/service-worker-loader.min.js" defer></script>
+    
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.google-analytics.com">
+    
+    <script src="https://doggor.github.io/js/gtag.min.js" defer></script>
+    
+    
+    <script src="https://doggor.github.io/js/sidebar.min.js" defer></script>
+</head>
+
+<body>
+    <header class="app-header">
+        <h3 class="app-header-wanna-say">&nbsp;</h3>
+        <h1 class="app-header-my-face">_(:з」∠)_</h1>
+        <a href="/" aria-label="Home"><h2>#碼農生活</h2></a>
+
+        
+        <div class="app-header-tag-group">
+        
+        
+        <a class="tag-btn" href="/tags/binlog/" aria-label="tag:binlog">
+            <span>binlog</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/canvas/" aria-label="tag:canvas">
+            <span>canvas</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/centos/" aria-label="tag:centos">
+            <span>centos</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/ci/" aria-label="tag:ci">
+            <span>ci</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/crawler/" aria-label="tag:crawler">
+            <span>crawler</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/debug/" aria-label="tag:debug">
+            <span>debug</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/docker/" aria-label="tag:docker">
+            <span>docker</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/fail2ban/" aria-label="tag:fail2ban">
+            <span>fail2ban</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/firewall/" aria-label="tag:firewall">
+            <span>firewall</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/ftp/" aria-label="tag:ftp">
+            <span>ftp</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/git/" aria-label="tag:git">
+            <span>git</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/gitlab/" aria-label="tag:gitlab">
+            <span>gitlab</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/gzip/" aria-label="tag:gzip">
+            <span>gzip</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/headless-chrome/" aria-label="tag:headless-chrome">
+            <span>headless-chrome</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/html/" aria-label="tag:html">
+            <span>html</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/indexing/" aria-label="tag:indexing">
+            <span>indexing</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/influx/" aria-label="tag:influx">
+            <span>influx</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/js/" aria-label="tag:js">
+            <span>js</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/malicious/" aria-label="tag:malicious">
+            <span>malicious</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/mysql/" aria-label="tag:mysql">
+            <span>mysql</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/nginx/" aria-label="tag:nginx">
+            <span>nginx</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/nodejs/" aria-label="tag:nodejs">
+            <span>nodejs</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/ntp/" aria-label="tag:ntp">
+            <span>ntp</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/php/" aria-label="tag:php">
+            <span>php</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/puppeteer/" aria-label="tag:puppeteer">
+            <span>puppeteer</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/react/" aria-label="tag:react">
+            <span>react</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/sql/" aria-label="tag:sql">
+            <span>sql</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/tfjs/" aria-label="tag:tfjs">
+            <span>tfjs</span>
+        </a>
+        
+        
+        <a class="tag-btn" href="/tags/vscode/" aria-label="tag:vscode">
+            <span>vscode</span>
+        </a>
+        
+        </div>
+        
+
+        <div class="app-header-links">
+            <a class="tag-link" href="/categories" aria-label="Categories"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-folder">
+  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+</svg></a>
+            <a class="tag-link" href="/tags" aria-label="Tags"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg></a>
+            
+            <a target="_blank" href="https://github.com/doggor" rel="noopener" aria-label="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+            
+        </div>
+    </header>
+
+    <div class="app-topbar">
+        <div class="app-topbar-menu-btn" aria-label="menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <a href="/" aria-label="Home">
+            <h3>#碼農生活</h3>
+        </a>
+    </div>
+
+    <main class="app-container">
+        
+  <article class="post">
+    <header class="post-header">
+      <div>
+        <h1 class ="post-title">InfluxDB使用問題與優化紀錄</h1>
+        
+
+
+<div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('http://www.facebook.com/share.php?u=https:\/\/doggor.github.io\/\/posts\/optimize-influx-performance\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('http://twitter.com/home?status=https:\/\/doggor.github.io\/\/posts\/optimize-influx-performance\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=https:\/\/doggor.github.io\/\/posts\/optimize-influx-performance\/&title=&summary=&source=');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/doggor.github.io\/\/posts\/optimize-influx-performance\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
+</div>
+
+      </div>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Dec 21, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          3 min read
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://doggor.github.io/tags/influx/">influx</a><a class="tag" href="https://doggor.github.io/tags/centos/">centos</a><a class="tag" href="https://doggor.github.io/tags/docker/">docker</a></div></div>
+    </header>
+    <div class="post-content">
+      <p>一個運轉一年多的 NodeJS 專案，每分鐘向 InfluxDB 寫入 40~50 個 point，某天發現不時出現<code>ETIMEOUT</code>以及<code>No host available</code>連接問題，導致部分資料無法儲存。</p>
+
+<h3 id="1-不是網絡問題">1. 不是網絡問題</h3>
+
+<p>這個 InfluxDB 實例運行在 Docker container 內，與 NodeJS 程序放在同一個 CentOS 機器上。influxDB 的 log 看不到異常，只有 NodeJS 報連接問題。</p>
+
+<p>第一時間就想是不是本機 network interface 與 Docker / container 之間連接出錯。然而無論重啟或更新 Docker 服務，情況也未有改變。</p>
+
+<p>的確，如果是本機 network 問題，多半是完全無法連接。(曾經有次 Linux 的網路服務自己出包了，要手動重啟。)</p>
+
+<p>程序同時連接另一個運行 MongoDB 的 container，Docker 服務更新前後都沒有類似連接問題，也應該不是 Docker 代碼出包。</p>
+
+<p><a href="https://github.com/node-influx/node-influx/issues/171#issuecomment-246092549">這個問題也在 Github 上被提出過</a>。當接收到數次<code>ETIMEOUT</code>後，node-influx 會把這個 influxDB 從連接池移除。因為這裡就只得一個 influxDB，移除後自然就<code>No host available</code>了。</p>
+
+<p>但為甚麼 timeout 呢？</p>
+
+<h3 id="2-官方的建議">2. 官方的建議</h3>
+
+<p>事實上我還未找到一個確切的回答，不過 InfluxData 在他們的文檔提及一些操作姿勢。</p>
+
+<h4 id="2-1-時間戳精度">2.1 時間戳精度</h4>
+
+<p>InfluxDB 文檔中的<a href="https://docs.influxdata.com/influxdb/v1.7/troubleshooting/frequently-asked-questions/#does-the-precision-of-the-timestamp-matter">FAQ 寫道</a>：</p>
+
+<blockquote>
+<p>To maximize performance, use the coarsest possible timestamp precision when writing data to InfluxDB.</p>
+</blockquote>
+
+<p>「為了使性能最大化，在將數據寫入 InfluxDB 時，請使用最粗略的時間戳精度。」</p>
+
+<p><a href="https://docs.influxdata.com/influxdb/v1.7/tools/api/#query-string-parameters-2">文檔記載</a>時間戳精度可為︰<code>ns</code>(納秒)、<code>u</code>(微秒)、<code>ms</code>(毫秒)、<code>s</code>(秒)、<code>m</code>(分鐘)、<code>h</code>(小時)</p>
+
+<p>原本我沒有指定精度，使用預設的<code>ns</code>。現在改成<code>m</code>，是專案可接受最粗略精度了。用 node-flux 的話這樣加一行︰</p>
+
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">1
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">2
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">influx</span>.<span style="color:#a6e22e">writePoints</span>([...<span style="color:#a6e22e">points</span>], {
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#a6e22e">precision</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;m&#34;</span>,
+</span>    <span style="color:#a6e22e">retentionPolicy</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;raw&#34;</span>,
+    <span style="color:#a6e22e">database</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;my_db&#34;</span>,
+});
+</code></pre></td></tr></table>
+</div>
+</div>
+
+<h4 id="2-2-批量寫入">2.2 批量寫入</h4>
+
+<p>在 node-influx 的文檔中寫著<a href="https://node-influx.github.io/class/src/index.js~InfluxDB.html#instance-method-writePoints">這麼一句</a>：</p>
+
+<blockquote>
+<p>For best performance, it&rsquo;s recommended that you batch your data into sets of a couple thousand records before writing it.</p>
+</blockquote>
+
+<p>「為了獲得最佳性能，建設您把資料以數千條為一組，批量寫入。」</p>
+
+<p>所以我增加一個 array，暫存要寫入的 point，僅當這個 array length &gt;= 1000 或者第一個 point 已經暫存超過一分鐘才進行<code>influx.writePoints()</code>動作。當然，寫入條件隨你按實際情況定義，我的情況就大約每分鐘一次寫入 40~50 個 point。</p>
+
+<p>如果使用 Redis 或類近方案作暫存會更好，避免程序崩潰而令資料流失。</p>
+
+<p>另外，如果<code>influx.writePoints()</code>再出現<code>ETIMEOUT</code>或<code>No host available</code>情況時，可以把資料放回暫存，等待下一次嘗試。</p>
+
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">17
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">buffer</span> <span style="color:#f92672">=</span> [];
+
+<span style="color:#75715e">//...
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">buffer</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1000</span> <span style="color:#f92672">||</span> (<span style="color:#a6e22e">buffer</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">buffer</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">timestamp</span>.<span style="color:#a6e22e">getTime</span>() <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">60000</span>) {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mb</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">buffer</span>.<span style="color:#a6e22e">splice</span>(<span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">buffer</span>.<span style="color:#a6e22e">length</span>);
+    <span style="color:#66d9ef">try</span> {
+        <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">influx</span>.<span style="color:#a6e22e">writePoints</span>(<span style="color:#a6e22e">mb</span>, {
+            <span style="color:#a6e22e">precision</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;m&#34;</span>, <span style="color:#75715e">//指定精度
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">retentionPolicy</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;raw&#34;</span>,
+            <span style="color:#a6e22e">database</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;my_db&#34;</span>,
+        });
+    } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">err</span>) {
+        <span style="color:#75715e">//如不能寫入則放回暫存
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">buffer</span>.<span style="color:#a6e22e">splice</span>(<span style="color:#a6e22e">buffer</span>.<span style="color:#a6e22e">length</span>, <span style="color:#ae81ff">0</span>, ...<span style="color:#a6e22e">mb</span>);
+    }
+}
+<span style="color:#75715e">//...
+</span></code></pre></td></tr></table>
+</div>
+</div>
+
+<p>但要留意一點，你需要為每個 point 指定<code>timestamp</code>屬性，避免讓 influx 設定，因為重試機制會令時間戳變得不正確。</p>
+
+<h4 id="2-3-內部監控-internal-monitoring">2.3 內部監控 (Internal monitoring)</h4>
+
+<p>InfluxDB 文檔在描述內部監控功能前<a href="https://docs.influxdata.com/platform/monitoring/influxdata-platform/internal-vs-external#internal-monitoring">高調表示</a>︰</p>
+
+<blockquote>
+<p>Not recommended for production environments.</p>
+</blockquote>
+
+<p>「不建議在生產環境中使用。」</p>
+
+<p>就是強烈建議你停用<strong>預設開啟的</strong>內部監控功能。</p>
+
+<p>我的 InfluxDB 是用官方的 Docker image，又嫌麻煩不想改<a href="https://docs.influxdata.com/platform/monitoring/influxdata-platform/internal-vs-external#disable-the-internal-database-in-production-clusters">設定檔</a>，就直接下環境變數做修改︰</p>
+
+<pre><code class="language-sh">-e INFLUXDB_MONITOR_STORE_ENABLED=false
+</code></pre>
+
+<p>同樣方法還可以停止上傳使用統計︰</p>
+
+<pre><code class="language-sh">-e INFLUXDB_REPORTING_DISABLED=true
+</code></pre>
+
+<h3 id="3-效果">3. 效果</h3>
+
+<p><code>ETIMEOUT</code>以及<code>No host available</code>依然會出現，但頻率低了很多，而且由於順道引入了重試機制，資料最終也寫入到InfluxDB，沒有因為連接問題而流失。</p>
+
+<h3 id="4-我做了甚麼">4. 我做了甚麼</h3>
+
+<p>官方並沒有解釋為甚麼會出現這樣的問題，亦沒有清楚説明上述的優化到底目的何在。以下是我的猜測：</p>
+
+<ol>
+<li>降低時間戳精度可以稍微減少資料量，提高壓縮率</li>
+<li>每次寫入資料到InfluxDB時，會直接儲存到硬盤上</li>
+<li>如果寫入頻率太高，硬盤速度會追不上，令大量寫入請求超時</li>
+<li>如果資料量少，也會做成檔案系統的<a href="https://en.wikipedia.org/wiki/Write_amplification">寫放大</a>問題</li>
+<li><code>Internal Monitoring</code>沒有實際用處的話，也可以被視為軟件層級的寫放大</li>
+<li>使用InfluxDB頻繁寫入、以及<a href="https://docs.influxdata.com/influxdb/v1.7/query_language/database_management/#retention-policy-management">Retention Policy</a>重寫資料，令SSD加速老化，導致資料儲存速度減慢，令問題浮現</li>
+</ol>
+    </div>
+  </article>
+  <section class="disqus-area"><div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "doggor-coding-notebook" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></section>
+
+    </main>
+</body>
+
+</html>
