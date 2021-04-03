@@ -35,7 +35,12 @@
     }
 }
 .app-header-my-face {
-    margin: 0.5em 0 2em;
+    margin: 3em 0 0;
+}
+
+.app-header-title > h2 {
+    margin-top: 0;
+    margin-bottom: 2em;
 }
 
 .app-header-links {

@@ -1,6 +1,6 @@
 baseURL = "https://doggor.github.io/"
 languageCode = "zh-cmn-Hans"
-title = "碼農生活"
+title = "程式魔法陣"
 theme = "m10c"
 enableRobotsTXT = true
 hasCJKLanguage = true
@@ -9,7 +9,7 @@ disqusShortname = "doggor-coding-notebook"
 
 [params]
   author = "Doggor"
-  description = "一隻IT🐶的踩坑筆記"
+  description = "寫程式就像是構築魔法陣，但往往召換失敗出一堆BUG"
   [[params.social]]
     name = "github"
     url = "https://github.com/doggor"
