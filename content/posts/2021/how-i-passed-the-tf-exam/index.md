@@ -24,7 +24,7 @@ tags: ["tensorflow", "cert", "exam"]
 
   第一步，去看看官方的[侯選者手冊](https://www.tensorflow.org/extras/cert/TF_Certificate_Candidate_Handbook.pdf)，當中的`Skills checklist`記載著必需要掌握的知識和考核範圍。在學習過程中，我們會就著這個清單內容做[Colab](https://colab.research.google.com/)筆記，確保沒有遺漏，或者記下了不必要的東西。
 
-  第二步，我推薦Udacity的[Intro to TensorFlow for Deep Learning](https://www.udacity.com/course/intro-to-tensorflow-for-deep-learning--ud187)。這是一個免費課程，內容覆蓋了考核範圍，教授的Tensorflow用法比較新而且簡潔，可以很好地掌握絕大部分需要的知識。由於沒有時間限制，我們可以在這裡慢慢打好基礎，細嚼他的Calab notebooks。
+  第二步，我推薦Udacity的[Intro to TensorFlow for Deep Learning](https://www.udacity.com/course/intro-to-tensorflow-for-deep-learning--ud187)。這是一個免費課程，內容覆蓋了考核範圍，教授的Tensorflow用法比較新而且簡潔，可以很好地掌握絕大部分需要的知識。由於沒有時間限制，我們可以在這裡慢慢打好基礎，細嚼它的Colab notebooks。
 
   第三步，人人必修的Coursera [DeepLearning.AI TensorFlow Developer Professional Certificate](https://www.coursera.org/professional-certificates/tensorflow-in-practice)。這個課程要價每月US$49，首7日免費，內容同樣覆蓋整個考核範圍，但教授的Tensorflow用法比較舊，畢竟這個課程是比Udacity更早推出的。由於我們已經在上一步學習到了大部分知識，基本上可以跳過教學，直接完成他的測驗。Course 1 & 2需要較多時間去訓練和調整模型，形式有點類似TF考試，而Course 3 & 4只需要回答問題。只要時間管理得當，7日內可以完成，不必多花錢，這也是為甚麼我會建議先修Udacity的課。
 
@@ -38,9 +38,9 @@ tags: ["tensorflow", "cert", "exam"]
 
   雖然侯選者手冊上寫了很多要求擁有的技能，事實上我們不必每一項都要練到神級。能夠正確地把資料放入一個設計合理的模型進行訓練，並在驗證中獲得高準確率，這才重要。
 
-  懂得基本的CSV、JSON檔案讀取就足夠，隨便google一下都找得到。`tf.data.Dataset`很好用也值得學習，但不必深入鑽研checklist沒提到的用法，基本的`.from_tensor_slices()`、`.shuffle()`、`.batch()`等等我覺得就足夠。
+  懂得基本的CSV、JSON檔案讀取就足夠，隨便google一下都找得到。`tf.data.Dataset`很好用也值得學習，但不必深入鑽研checklist沒有提及的用法，基本的`.from_tensor_slices()`、`.shuffle()`、`.batch()`等等我覺得就足夠。
 
-  每個訓練好的模型都需要提交到伺服器評分，因此模型的input shape簡單就好，不用想得太複雜，否則input shape可能會對不上。所以，分詞器(subwording tokenizer)、preprocessing layers等checklist一樣沒提到的數據預處理工具也不必太上心，跟著Coursera課程的做法就可以。(未實測，勇者請下面留言thx)
+  每個訓練好的模型都需要提交到伺服器評分，因此模型的input shape簡單就好，不用想得太複雜，否則input shape可能會對不上。所以，分詞器(subwording tokenizer)、preprocessing layers等checklist一樣沒有提及的數據預處理工具也不必太花心機，跟著Coursera課程的做法就可以。(未科學驗證，勇者請下面留言thx)
 
   要清楚了解各種Keras Layer的使用方法，Dense、Flatten、Dropout、Conv1D、Conv2D、MaxPool2D、Bidirectional、RNN / LSTM / GRU等。個人感覺GRU在訓練時間和效能平衡之間可以完勝RNN和LSTM，所以後兩者比較少用。
 
@@ -60,16 +60,16 @@ tags: ["tensorflow", "cert", "exam"]
 
 # 如何訓練出滿分模型
 
-  心別慌，細心檢查以下各種可能原因：
+  模型未能滿分不用怕，細心檢查以下各種可能原因：
 
   1. 輸入問題：看看是不是提取的數據出了錯，數據還未進行數據歸一化(Data Normalization)，或者模型的input shape不是題目所期望的。
   2. 輸出問題：確認一下輸出層的激活函數、損失函數和優化器正確設置。
   3. 訓練時數不足：增加Epochs至100 ~ 1,000不等，當然別忘記要加上`tf.keras.callbacks.EarlyStopping`。
   4. 模型的理解力不夠：嘗試調整模型結構，以及不影響input/output shape的超參數。
-  5. 數據不足：Data Augmentation之外，把測試數據(validation data)也拿去訓練吧。
+  5. 數據不足：Data Augmentation之外，把測試數據集(validation set)也拿去做訓練吧。
 
-# 最後
+# 心得
 
-不算太難，多花點時間調校模型，上面沒提及的請去看侯選者手冊，加油 :thumbsup:
+考試不算困難，要多花點時間調校模型，主要在Colab上訓練，因為能夠反覆調用python區塊很方便。最後，各位加油 :thumbsup:
 
 > 事實上為了那筆匯款，銀行方面收取了我HK$50的手續費，所以才不得不拼命去學習喔 (╯°Д°)╯ ┻━┻
