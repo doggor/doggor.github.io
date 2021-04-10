@@ -2,7 +2,7 @@
 title: "使用Fail2ban阻擋惡意網絡爬蟲"
 date: 2019-06-04T19:34:26+08:00
 draft: false
-categories: ["devops"]
+categories: ["DevOps"]
 tags: ["fail2ban", "nginx", "php", "malicious", "crawler", "firewall"]
 ---
 

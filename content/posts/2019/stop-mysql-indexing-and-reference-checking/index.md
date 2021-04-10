@@ -2,7 +2,7 @@
 title: "暫停MySQL索引更新和參照檢查"
 date: 2019-10-26T11:00:41+08:00
 draft: false
-categories: ["database", "devops"]
+categories: ["Database", "DevOps"]
 tags: ["mysql", "indexing"]
 ---
 

@@ -2,8 +2,8 @@
 title: "在VS Code遠端偵錯NodeJS程序"
 date: 2019-03-05T10:48:55+08:00
 draft: false
-categories: ["coding"]
-tags: ["vscode","nodejs","debug"]
+categories: ["Coding"]
+tags: ["vscode", "nodejs", "debug"]
 ---
 
 甚麼時候會需要遙距debug另一部機器上的程序呢？例如這個程序只能在Linux上運行卻要在windows下開發，部署到生產環境時不能正常運作，某一天生產環境下的程序突然崩潰......

@@ -2,8 +2,8 @@
 title: "CentOS 7系統時間設定與NTP同步"
 date: 2019-03-03T23:01:20+08:00
 draft: false
-categories: ["devops"]
-tags: ["centos","ntp"]
+categories: ["DevOps"]
+tags: ["centos", "ntp"]
 ---
 
 設定系統時間基本上是我每次登陸新VM上的首要任務。如果系統時間不好好設定的話，以後server運行和數據庫紀錄就會變得一團糟，所有依賴該主機的開發測試工作都變難，很容易誤以為是程式的bug......

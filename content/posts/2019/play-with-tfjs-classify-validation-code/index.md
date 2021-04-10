@@ -1,9 +1,9 @@
 ---
-title: "[試一下tensorflow.js] 辦識驗證碼字母"
+title: "用tensorflow.js辦識驗證碼字母"
 date: 2019-09-01T18:18:26+08:00
 draft: false
-categories: ["coding", "machine-learning"]
-tags: ["js", "react", "tfjs"]
+categories: ["Coding", "AI"]
+tags: ["tensorflow", "js", "react"]
 ---
 
 接續上一篇用js生成一套驗證碼字母，這篇使用tensorflow.js來訓練一個模型去辦識這款驗證碼。

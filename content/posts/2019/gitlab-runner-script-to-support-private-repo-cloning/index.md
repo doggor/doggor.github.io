@@ -2,8 +2,8 @@
 title: "如何讓GitLab Runner也可以git clone私有Repositories"
 date: 2019-08-03T20:59:24+08:00
 draft: false
-categories: ["devops"]
-tags: ["gitlab","ci","git"]
+categories: ["DevOps"]
+tags: ["gitlab", "ci", "git"]
 ---
 
 在私有GitLab上架設GitLab Runner去處理CI/CD的確是非常方便，然而當你開始把可重用的library拆分出來成為獨立project，項目之間就會出現依賴關係，這時你的build script可能會在遇上permission denied問題。

@@ -2,7 +2,7 @@
 title: "關於我如何考取Tensorflow開發者認證"
 date: 2021-04-05T15:01:55+08:00
 draft: false
-categories: ["machine-learning"]
+categories: ["AI"]
 tags: ["tensorflow", "cert", "exam"]
 ---
 

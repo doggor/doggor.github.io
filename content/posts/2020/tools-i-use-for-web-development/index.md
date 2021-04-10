@@ -1,8 +1,8 @@
 ---
-title: "N個我作為Web開發人員常用的工具"
+title: "2020年N個作為Web開發人員的常用工具"
 date: 2020-05-30T09:55:05+08:00
 draft: false
-categories: ["coding"]
+categories: ["Coding"]
 tags: ["tool"]
 ---
 

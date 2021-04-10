@@ -1,9 +1,9 @@
 ---
-title: "簡記一下CentOS 7上安裝FTP server步驟"
+title: "記一下CentOS 7上安裝FTP server步驟"
 date: 2019-08-04T12:25:35+08:00
 draft: false
-categories: ["devops"]
-tags: ["centos","ftp"]
+categories: ["DevOps"]
+tags: ["centos", "ftp"]
 ---
 
 工作上很少機會需要親自安裝FTP server，怕日後忘記了然後又再花不必要的功夫，這邊記一下在CentOS 7上的安裝步驟。

@@ -1,9 +1,9 @@
 ---
-title: "[學習筆記] Google Ads 搜尋廣告認證"
+title: "Google Ads搜尋廣告認證學習筆記"
 date: 2020-08-31T23:00:00+08:00
 draft: false
-categories: ["seo"]
-tags: ["search-ads", "cert", "google", "seo"]
+categories: ["SEO"]
+tags: ["search-ads", "cert", "google", "seo", "learning-notes"]
 ---
 
 早些時候跟以前公司的Marketing同事吃飯聊聊，才知道Google整理了一系列跟市埸營銷有關的免費認證。雖然幾年前也曾經有給客戶落廣告的經驗，但始終沒有踏實基礎，而且所使用的工具也變化了不少，所以這個月便試試修畢搜尋廣告認證。

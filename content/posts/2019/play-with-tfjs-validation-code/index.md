@@ -1,9 +1,9 @@
 ---
-title: "[試一下tensorflow.js] 先用canvas畫驗證碼"
+title: "用canvas畫驗證碼"
 date: 2019-08-31T10:42:02+08:00
 draft: false
-categories: ["coding", "machine-learning"]
-tags: ["js", "canvas", "tfjs"]
+categories: ["Coding", "AI"]
+tags: ["tensorflow", "js", "canvas"]
 ---
 
 2019香港居屋抽籤完滿結束，人生依舊殘念。沒事幹的唯有回望一下今年網上居屋申請表格，看看用canvas重新實現表格上的驗證碼，然後試著用tensorflow.js去辨識字母。

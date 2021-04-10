@@ -1,9 +1,9 @@
 ---
-title: "[學習筆記] 如何正確地為網站做SEO"
+title: "如何正確地為網站做SEO"
 date: 2020-04-23T11:38:31+08:00
 draft: false
-categories: ["seo"]
-tags: ["seo", "marketing"]
+categories: ["SEO"]
+tags: ["seo", "marketing", "learning-notes"]
 ---
 
 要讓更多人能夠得知並接觸得到我們的產品或服務，推廣自家網站是必不可少的一步，也就是要為我們的網站做搜尋引擎優化（Search Engine Optimization）。市場上有很多公司為各大中小企提供SEO服務，協助分析網站內容，投放廣告，然後成效報告裡寫了一堆似昰疑非的數字，但收入又沒有想像中的提升，是哪裡錯了嗎？

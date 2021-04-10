@@ -1,9 +1,9 @@
 ---
-title: "利用binlog修復MySQL"
+title: "利用binlog修復MySQL數據"
 date: 2019-10-01T18:06:19+08:00
 draft: false
-categories: ["database", "devops"]
-tags: ["mysql", "binlog", "sql"]
+categories: ["Database", "DevOps"]
+tags: ["mysql", "binlog", "repair", "data"]
 ---
 
 最近因為一次手殘剷除了production主機上的MySQL數據庫，需要從最近時間點的備份中還原，並且從binlog中提取該時間點後的部分重要query重新執行，以盡可能回復原狀。
