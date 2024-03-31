@@ -59,58 +59,59 @@
 </head>
 
 <body class="darkmode--activated">
-    <header class="app-header">
-        <div class="mobile-back-btn"></div>
-        <h3 class="app-header-wanna-say">&nbsp;</h3>
-        <h1 class="app-header-my-face">_(:з」∠)_</h1>
-        <a class="app-header-title" href="/" aria-label="Home"><h2>#{{ .Site.Title }}</h2></a>
-
-        {{ if .Site.Taxonomies.tags }}
-        <div class="app-header-tag-group">
-        {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-        {{ $termLink := printf "/tags/%s/" $name | urlize }}
-        <a class="tag-btn" href="{{ $termLink }}" aria-label="tag:{{ $name }}">
-            <span>{{ $name }}</span>
-        </a>
-        {{ end }}
-        </div>
-        {{ end }}
-
-        <div class="app-header-links">
-            <a class="tag-link" href="/categories" aria-label="Categories">{{ partial "icon.html" (dict "ctx" $ "name" "folder") }}</a>
-            <a class="tag-link" href="/tags" aria-label="Tags">{{ partial "icon.html" (dict "ctx" $ "name" "tag") }}</a>
-            {{ range .Site.Params.social }}
-            <a target="_blank" href="{{ .url }}" rel="noopener" aria-label="Github">{{ partial "icon.html" (dict "ctx" $ "name" .name ) }}</a>
+    <div class="app-centralizer">
+        <header class="app-header">
+            <div class="mobile-back-btn"></div>
+            <h3 class="app-header-wanna-say">&nbsp;</h3>
+            <h1 class="app-header-my-face">_(:з」∠)_</h1>
+            <a class="app-header-title" href="/" aria-label="Home"><h2>#{{ .Site.Title }}</h2></a>
+            {{ if .Site.Taxonomies.tags }}
+            <div class="app-header-tag-group">
+            {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+            {{ $termLink := printf "/tags/%s/" $name | urlize }}
+            <a class="tag-btn" href="{{ $termLink }}" aria-label="tag:{{ $name }}">
+                <span>{{ $name }}</span>
+            </a>
             {{ end }}
+            </div>
+            {{ end }}
+
+            <div class="app-header-links">
+                <a class="tag-link" href="/categories" aria-label="Categories">{{ partial "icon.html" (dict "ctx" $ "name" "folder") }}</a>
+                <a class="tag-link" href="/tags" aria-label="Tags">{{ partial "icon.html" (dict "ctx" $ "name" "tag") }}</a>
+                {{ range .Site.Params.social }}
+                <a target="_blank" href="{{ .url }}" rel="noopener" aria-label="Github">{{ partial "icon.html" (dict "ctx" $ "name" .name ) }}</a>
+                {{ end }}
+            </div>
+
+            <label class="planet-switch">
+                <input type="checkbox" name="darkmode" checked="checked" aria-label="toggle darkmode" id="darkmode-switch-checkbox">
+                <div class="planet moon">
+                    <div class="rays">
+                        <div class="ray"></div>
+                        <div class="ray"></div>
+                        <div class="ray"></div>
+                    </div>
+                    <div class="core"></div>
+                    <div class="hole"></div>
+                    <div class="hole"></div>
+                </div>
+            </label>
+        </header>
+
+        <div class="app-topbar">
+            <div class="app-topbar-menu-btn" aria-label="menu"></div>
+            <a href="/" aria-label="Home">
+                <h3>#{{ .Site.Title }}</h3>
+            </a>
         </div>
 
-        <label class="planet-switch">
-            <input type="checkbox" name="darkmode" checked="checked" aria-label="toggle darkmode" id="darkmode-switch-checkbox">
-            <div class="planet moon">
-                <div class="rays">
-                    <div class="ray"></div>
-                    <div class="ray"></div>
-                    <div class="ray"></div>
-                </div>
-                <div class="core"></div>
-                <div class="hole"></div>
-                <div class="hole"></div>
-            </div>
-        </label>
-    </header>
-
-    <div class="app-topbar">
-        <div class="app-topbar-menu-btn" aria-label="menu"></div>
-        <a href="/" aria-label="Home">
-            <h3>#{{ .Site.Title }}</h3>
-        </a>
+        <main class="app-container">
+            {{ block "main" . }}
+            {{ .Content }}
+            {{ end }}
+        </main>
     </div>
-
-    <main class="app-container">
-        {{ block "main" . }}
-        {{ .Content }}
-        {{ end }}
-    </main>
 </body>
 
 </html>
