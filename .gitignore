@@ -9,3 +9,5 @@ $RECYCLE.BIN/
 .DS_Store
 
 /resources/_gen
+
+/public
