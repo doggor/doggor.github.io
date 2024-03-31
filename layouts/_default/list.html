@@ -7,9 +7,15 @@
                 <div class="posts-list-item-image">
                     {{ $image := .Resources.GetMatch "thumbnail.*" }}
                     {{ if $image }}
-                    {{ $thumbnail := $image.Fill "200x140 Center"}}
-                    {{ $thumbnail2x := $image.Fill "400x280 Center"}}
-                    <img src="{{ $thumbnail.RelPermalink }}" srcset="{{ $thumbnail.RelPermalink }}, {{ $thumbnail2x.RelPermalink }} 2x" alt="">
+                    {{ $thumbnailJpg := $image.Fill "200x140 Center jpg"}}
+                    {{ $thumbnailJpg2x := $image.Fill "400x280 Center jpg"}}
+                    {{ $thumbnailWebp := $image.Fill "200x140 Center webp"}}
+                    {{ $thumbnailWebp2x := $image.Fill "400x280 Center webp"}}
+                    <picture>
+                        <source srcset="{{ $thumbnailWebp.RelPermalink }}, {{ $thumbnailWebp2x.RelPermalink }} 2x" type="image/webp">
+                        <source srcset="{{ $thumbnailJpg.RelPermalink }}, {{ $thumbnailJpg2x.RelPermalink }} 2x" type="image/jpg">
+                        <img src="{{ $thumbnailJpg.RelPermalink }}" alt="">
+                    </picture>
                     {{ end }}
                 </div>
                 <div class="posts-list-item-text">
