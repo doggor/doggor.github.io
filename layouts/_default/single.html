@@ -2,6 +2,20 @@
   <article class="post">
     <header class="post-header">
       <div>
+        {{ $image := .Resources.GetMatch "thumbnail.*" }}
+        {{ if $image }}
+        {{ $coverJpg := $image.Fill "1080x140 Center jpg"}}
+        {{ $coverJpg2x := $image.Fill "1920x280 Center jpg"}}
+        {{ $coverWebp := $image.Fill "1080x140 Center webp"}}
+        {{ $coverWebp2x := $image.Fill "1920x280 Center webp"}}
+        <picture>
+            <source srcset="{{ $coverWebp.RelPermalink }}, {{ $coverWebp2x.RelPermalink }} 2x" type="image/webp">
+            <source srcset="{{ $coverJpg.RelPermalink }}, {{ $coverJpg2x.RelPermalink }} 2x" type="image/jpg">
+            <img class="post-cover" src="{{ $coverJpg.RelPermalink }}" alt="">
+        </picture>
+        {{ end }}
+      </div>
+      <div>
         <h1 class ="post-title">{{ .Title }}</h1>
       </div>
       <div class="post-meta">
