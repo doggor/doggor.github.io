@@ -230,8 +230,6 @@ state 守護授權流程的完整性，nonce 守護 ID Token 的新鮮度。兩�
 
 正確實作這兩個參數，能大幅降低 CSRF、重放攻擊風險，讓你的應用符合 OAuth 2.0 / OIDC 規範與各大提供者的安全審核要求。
 
-建議開發團隊將這些邏輯封裝成可重用的 Hook / Middleware，並搭配成熟 SDK（如 `@auth0/auth0-spa-js`、`next-auth`、`passport-apple`）加速開發。
+建議開發團隊將這些邏輯封裝成可重用的 Hook / Middleware，並搭配成熟 SDK（如 `@auth0/auth0-spa-js`、`next-auth`）加速開發。
 
-希望本文搭配 Hugo Mermaid 流程圖與完整 TypeScript 範例，能幫助你在實務專案中建立更安全的第三方登入系統。
-
-有任何實作疑問或想討論特定提供者的細節，歡迎在留言區交流！
+希望本文能幫助你在實務專案中建立更安全的第三方登入系統 🙂
