@@ -102,10 +102,11 @@ Apple 官方文件特別強調：nonce 必須在伺服器端驗證，以防止�
 
 ## 3. 在 Google、Facebook 與 SIWA 中的實際應用
 
-提供者,state 使用情境,nonce 使用情境,官方建議
-Google,OAuth2 / OIDC 皆推薦,OIDC 必驗證（ID Token）,必須使用 state，nonce 強烈建議
-Facebook,OAuth2 登入必用,不提供完整 OIDC，無標準 nonce,必須使用 state
-SIWA,客戶端驗證重複回應,伺服器端驗證 JWT 中的 nonce,兩者皆必須
+| 提供者 | state 使用情境 | nonce 使用情境 | 官方建議 |
+|---|---|---|---|
+| Google | OAuth2 / OIDC 均建議使用，用於防止 CSRF 並恢復原始狀態 | OIDC 必須在驗證 ID Token 時檢查 nonce（防重放） | 必須驗證 state；對 OIDC 必須驗證 nonce |
+| Facebook | OAuth2 登入必須使用 state（防 CSRF、綁定請求） | Facebook 不提供完整 OIDC，無標準 nonce（若自行實作需額外驗證） | 必須使用 state；nonce 無標準支援，視情況自行設計驗證 |
+| SIWA (Sign In with Apple) | 客戶端需檢查回傳的 state（防 CSRF、恢復跳轉） | 伺服器端需驗證 ID Token 中的 nonce（防重放） | 兩者皆必須：客戶端驗證 state，後端驗證 JWT 的 nonce |
 
 **SIWA 特別注意**：Apple 會在回應中同時返回 state 與包含 nonce 的 identityToken。開發者需在客戶端檢查 state，在後端使用 jsonwebtoken 或 Apple 公鑰驗證 nonce。
 
