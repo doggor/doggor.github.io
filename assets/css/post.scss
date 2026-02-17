@@ -21,6 +21,12 @@ img.post-cover {
     color: var(--color-dark-text);
 }
 
+.post-content pre.mermaid {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
 .post-meta {
     margin-top: 1.5rem;
     clear: both;
